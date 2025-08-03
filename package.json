@@ -4,7 +4,7 @@
   "description": "TeeRank - Rate the World's Greatest Golf Holes. The Letterboxd for golf is coming soon!",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
