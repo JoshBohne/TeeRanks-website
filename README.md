@@ -1,36 +1,153 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TeeRank Website
+
+The official landing page for TeeRank - Rate the World's Greatest Golf Holes.
+
+## Overview
+
+TeeRank is the "Letterboxd for golf" - a platform where golfers can discover, rate, and track famous golf holes and courses worldwide. This website serves as the primary marketing site and waitlist signup for the upcoming mobile app.
+
+## Features
+
+- **Hero Section**: Compelling headline and call-to-action
+- **Golf Course Gallery**: Showcasing iconic holes coming to TeeRank
+- **Feature Showcase**: App capabilities and benefits
+- **Waitlist Signup**: Email capture with form validation
+- **Responsive Design**: Mobile-first approach
+- **SEO Optimized**: Meta tags and social sharing
+- **Smooth Animations**: Framer Motion animations throughout
+
+## Tech Stack
+
+- **Next.js 15** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **Framer Motion** for animations
+- **React Hook Form** with Zod validation
+- **Lucide React** for icons
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.x or later
+- npm or yarn
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/
+│   ├── api/
+│   │   └── waitlist/          # Waitlist API endpoint
+│   ├── privacy/               # Privacy policy page
+│   ├── terms/                 # Terms of service page
+│   ├── globals.css           # Global styles
+│   ├── layout.tsx            # Root layout with SEO
+│   └── page.tsx              # Main landing page
+public/
+├── images/                   # Golf course images
+├── teerank-logo.png         # Logo
+└── favicon.png              # Favicon
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key Sections
 
-## Learn More
+### Navigation
+- Fixed header with logo and CTA button
+- Smooth scrolling to waitlist section
 
-To learn more about Next.js, take a look at the following resources:
+### Hero Section
+- Large headline with green accent
+- Compelling subheading
+- Primary and secondary CTAs
+- "Letterboxd for golf" positioning
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Golf Course Gallery
+- Grid of iconic golf holes
+- Hover effects and animations
+- "Coming Soon" badges
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Features Section
+- Four key features with icons
+- Rate & Review, Bucket List, Rankings, Social
+- Animated on scroll
 
-## Deploy on Vercel
+### Why TeeRank Section
+- Benefits and value proposition
+- Mock app interface preview
+- Checklist of key benefits
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Waitlist Section
+- Form with validation
+- Email, name, and optional handicap
+- Success state animation
+- API integration ready
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Footer
+- Logo and navigation links
+- Social media icons (placeholder)
+- Privacy policy and terms links
+- Contact information
+
+## Deployment
+
+### Replit Deployment
+
+1. Import project to Replit
+2. Set up custom domain (teeranks.com)
+3. Configure environment variables if needed
+4. Deploy with `npm run build && npm start`
+
+### Environment Variables (Future)
+
+```env
+# Email service integration
+CONVERTKIT_API_KEY=your_api_key
+MAILCHIMP_API_KEY=your_api_key
+
+# Analytics
+GOOGLE_ANALYTICS_ID=your_ga_id
+```
+
+## Future Enhancements
+
+- [ ] Email service integration (ConvertKit/Mailchimp)
+- [ ] Google Analytics integration
+- [ ] Blog section for golf content
+- [ ] Social media integration
+- [ ] A/B testing for conversion optimization
+- [ ] User dashboard for waitlist members
+
+## Email Service Integration
+
+The waitlist form is ready for email service integration. To connect:
+
+1. Choose service (ConvertKit, Mailchimp, etc.)
+2. Add API credentials to environment variables
+3. Update `/api/waitlist/route.ts` with service calls
+4. Set up automated welcome email sequence
+
+## Contact
+
+- Email: hello@teeranks.com
+- Website: https://teeranks.com
+
+## License
+
+© 2025 TeeRank. All rights reserved.
