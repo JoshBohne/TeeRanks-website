@@ -15,7 +15,7 @@ import {
   ArrowRight, 
   CheckCircle,
   Instagram,
-  Twitter,
+  X,
   Facebook,
   ShoppingBag
 } from "lucide-react";
@@ -204,7 +204,7 @@ export default function Home() {
               style={{ boxShadow: 'var(--shadow-soft)' }}
             >
               <p className="text-lg font-medium" style={{ color: 'var(--primary-green)' }}>
-                ⛳ The Letterboxd for golf is coming soon
+                ⛳ The &ldquo;Letterboxd for golf&rdquo;
               </p>
             </motion.div>
           </motion.div>
@@ -234,7 +234,7 @@ export default function Home() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {golfCourses.map((course, index) => (
+            {golfCourses.map((course) => (
               <motion.div
                 key={course.name}
                 className="relative group overflow-hidden aspect-[4/3] glass-strong"
@@ -268,14 +268,6 @@ export default function Home() {
                   Coming Soon
                 </div>
                 
-                {/* Floating badge */}
-                <div className="absolute top-6 left-6 w-8 h-8 rounded-full flex items-center justify-center font-bold" style={{
-                  background: 'var(--gradient-green-dark)',
-                  color: 'var(--foreground)',
-                  boxShadow: 'var(--shadow-green)'
-                }}>
-                  {index + 1}
-                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -585,7 +577,7 @@ export default function Home() {
               </div>
               
               <p className="text-base mt-6 font-medium" style={{ color: 'var(--primary-green)' }}>
-                \u26f3 We&apos;ll never spam you. Unsubscribe at any time.
+                ⛳ We&apos;ll never spam you. Unsubscribe at any time.
               </p>
             </motion.form>
           )}
@@ -644,11 +636,11 @@ export default function Home() {
                 <Instagram className="w-6 h-6 transition-colors text-[var(--foreground-soft)] group-hover:text-[var(--primary-green)]" />
               </a>
               <a 
-                href="#" 
+                href="https://x.com" 
                 className="glass-strong w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
                 style={{ boxShadow: 'var(--shadow-soft)' }}
               >
-                <Twitter className="w-6 h-6 transition-colors text-[var(--foreground-soft)] group-hover:text-[var(--primary-green)]" />
+                <X className="w-6 h-6 transition-colors text-[var(--foreground-soft)] group-hover:text-[var(--primary-green)]" />
               </a>
               <a 
                 href="#" 
