@@ -4,17 +4,16 @@ import { z } from 'zod';
 const waitlistSchema = z.object({
   email: z.string().email(),
   firstName: z.string().min(2),
-  handicap: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, firstName, handicap } = waitlistSchema.parse(body);
+    const { email, firstName } = waitlistSchema.parse(body);
 
     // TODO: Replace with actual email service integration
     // For now, just log the submission
-    console.log('Waitlist submission:', { email, firstName, handicap });
+    console.log('Waitlist submission:', { email, firstName });
 
     // Here you would typically:
     // 1. Save to database

@@ -22,7 +22,6 @@ import {
 const waitlistSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   firstName: z.string().min(2, "First name must be at least 2 characters"),
-  handicap: z.string().optional(),
 });
 
 type WaitlistForm = z.infer<typeof waitlistSchema>;
@@ -111,9 +110,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-900">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm border-b border-gray-100 z-50">
+      <nav className="fixed top-0 w-full bg-gray-900/90 backdrop-blur-sm border-b border-gray-700 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
@@ -124,7 +123,7 @@ export default function Home() {
                 height={40}
                 className="rounded-lg"
               />
-              <span className="text-xl font-bold text-gray-900">TeeRank</span>
+              <span className="text-xl font-bold text-white">TeeRank</span>
             </div>
             <a 
               href="#waitlist" 
@@ -146,7 +145,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <motion.h1 
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6"
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
@@ -156,7 +155,7 @@ export default function Home() {
             </motion.h1>
             
             <motion.p 
-              className="text-xl sm:text-2xl text-gray-600 mb-8 leading-relaxed"
+              className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -179,13 +178,13 @@ export default function Home() {
                 <span>Join the Waitlist</span>
                 <ArrowRight className="w-5 h-5" />
               </a>
-              <button className="border-2 border-gray-300 hover:border-green-500 text-gray-700 hover:text-green-600 px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
+              <button className="border-2 border-gray-600 hover:border-green-500 text-gray-300 hover:text-green-400 px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
                 Watch Demo
               </button>
             </motion.div>
 
             <motion.p 
-              className="text-sm text-gray-500"
+              className="text-sm text-gray-400"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.6 }}
@@ -197,16 +196,16 @@ export default function Home() {
       </section>
 
       {/* Golf Course Gallery */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-12"
             {...fadeInUp}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Iconic Holes Coming to TeeRank
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-300">
               Rate and review the world&apos;s most famous golf holes
             </p>
           </motion.div>
@@ -253,10 +252,10 @@ export default function Home() {
             className="text-center mb-16"
             {...fadeInUp}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Everything You Need to Track Your Golf Journey
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               TeeRank combines the best of social rating platforms with golf-specific features 
               to help you discover, rate, and track the world&apos;s greatest golf experiences.
             </p>
@@ -278,8 +277,8 @@ export default function Home() {
                 <div className={`${feature.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto`}>
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
+                <p className="text-gray-300 leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -287,11 +286,11 @@ export default function Home() {
       </section>
 
       {/* Why TeeRank Section */}
-      <section className="py-16 bg-green-50">
+      <section className="py-16 bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeInUp}>
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
                 Why TeeRank?
               </h2>
               <div className="space-y-6">
@@ -300,8 +299,8 @@ export default function Home() {
                     <CheckCircle className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Discover Hidden Gems</h3>
-                    <p className="text-gray-600">Find amazing golf courses you never knew existed through community recommendations.</p>
+                    <h3 className="font-semibold text-white mb-2">Discover Hidden Gems</h3>
+                    <p className="text-gray-300">Find amazing golf courses you never knew existed through community recommendations.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -309,8 +308,8 @@ export default function Home() {
                     <CheckCircle className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Track Your Journey</h3>
-                    <p className="text-gray-600">Keep a digital record of every course you&apos;ve played and want to play.</p>
+                    <h3 className="font-semibold text-white mb-2">Track Your Journey</h3>
+                    <p className="text-gray-300">Keep a digital record of every course you&apos;ve played and want to play.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -318,8 +317,8 @@ export default function Home() {
                     <CheckCircle className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Connect with Golfers</h3>
-                    <p className="text-gray-600">Follow friends, share experiences, and get inspired by the golf community.</p>
+                    <h3 className="font-semibold text-white mb-2">Connect with Golfers</h3>
+                    <p className="text-gray-300">Follow friends, share experiences, and get inspired by the golf community.</p>
                   </div>
                 </div>
               </div>
@@ -412,14 +411,6 @@ export default function Home() {
                   )}
                 </div>
                 
-                <div>
-                  <input
-                    {...register("handicap")}
-                    type="text"
-                    placeholder="Golf Handicap (Optional)"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
-                  />
-                </div>
                 
                 <button
                   type="submit"
@@ -446,7 +437,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-50 py-12">
+      <footer className="bg-gray-800 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
@@ -457,36 +448,36 @@ export default function Home() {
                 height={40}
                 className="rounded-lg"
               />
-              <span className="text-xl font-bold text-gray-900">TeeRank</span>
+              <span className="text-xl font-bold text-white">TeeRank</span>
             </div>
             
             <div className="flex items-center space-x-6 mb-4 md:mb-0">
-              <a href="mailto:hello@teeranks.com" className="text-gray-600 hover:text-green-500 transition-colors">
+              <a href="mailto:hello@teeranks.com" className="text-gray-300 hover:text-green-500 transition-colors">
                 Contact
               </a>
-              <a href="/privacy" className="text-gray-600 hover:text-green-500 transition-colors">
+              <a href="/privacy" className="text-gray-300 hover:text-green-500 transition-colors">
                 Privacy
               </a>
-              <a href="/terms" className="text-gray-600 hover:text-green-500 transition-colors">
+              <a href="/terms" className="text-gray-300 hover:text-green-500 transition-colors">
                 Terms
               </a>
             </div>
             
             <div className="flex items-center space-x-4">
-              <a href="#" className="text-gray-600 hover:text-green-500 transition-colors">
+              <a href="#" className="text-gray-300 hover:text-green-500 transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-600 hover:text-green-500 transition-colors">
+              <a href="#" className="text-gray-300 hover:text-green-500 transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-600 hover:text-green-500 transition-colors">
+              <a href="#" className="text-gray-300 hover:text-green-500 transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
             </div>
           </div>
           
-          <div className="border-t border-gray-200 mt-8 pt-8 text-center">
-            <p className="text-gray-500">
+          <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+            <p className="text-gray-400">
               © 2025 TeeRank. All rights reserved. Made with ⛳ for golf enthusiasts.
             </p>
           </div>

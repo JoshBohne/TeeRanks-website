@@ -11,7 +11,8 @@ TeeRank is the "Letterboxd for golf" - a platform where golfers can discover, ra
 - **Hero Section**: Compelling headline and call-to-action
 - **Golf Course Gallery**: Showcasing iconic holes coming to TeeRank
 - **Feature Showcase**: App capabilities and benefits
-- **Waitlist Signup**: Email capture with form validation
+- **Waitlist Signup**: Simplified email capture with form validation
+- **Dark Mode Design**: Sleek dark theme by default
 - **Responsive Design**: Mobile-first approach
 - **SEO Optimized**: Meta tags and social sharing
 - **Smooth Animations**: Framer Motion animations throughout
@@ -95,7 +96,7 @@ public/
 
 ### Waitlist Section
 - Form with validation
-- Email, name, and optional handicap
+- Email and name only (simplified)
 - Success state animation
 - API integration ready
 
