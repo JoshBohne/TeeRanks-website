@@ -16,6 +16,16 @@
   --primary-green-light: #32CD32; /* Lime green for hover states */
   --primary-green-glow: #00FF7F40; /* Green with transparency for glows */
   
+  /* Feature Colors */
+  --feature-gold: #FFD700;       /* Gold for star/rating features */
+  --feature-gold-dark: #F59E0B;  /* Darker gold for gradients */
+  --feature-blue: #3B82F6;       /* Blue for bucket list features */
+  --feature-blue-dark: #2563EB;  /* Darker blue for gradients */
+  --feature-orange: #F97316;     /* Orange for rankings features */
+  --feature-orange-dark: #EA580C; /* Darker orange for gradients */
+  --feature-purple: #8B5CF6;     /* Purple for social features */
+  --feature-purple-dark: #7C3AED; /* Darker purple for gradients */
+  
   /* Dark Theme Grays */
   --gray-50: #1A1A1A;
   --gray-100: #262626;

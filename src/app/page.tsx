@@ -16,7 +16,8 @@ import {
   CheckCircle,
   Instagram,
   Twitter,
-  Facebook
+  Facebook,
+  ShoppingBag
 } from "lucide-react";
 
 const waitlistSchema = z.object({
@@ -64,25 +65,29 @@ export default function Home() {
       icon: Star,
       title: "Rate & Review",
       description: "Swipe through famous golf holes and courses. Rate them 0-10 and discover hidden gems.",
-      color: "bg-yellow-500"
+      colorVar: "--feature-gold",
+      colorDarkVar: "--feature-gold-dark"
     },
     {
-      icon: MapPin,
+      icon: ShoppingBag,
       title: "Bucket List",
       description: "Track your must-play courses worldwide. Mark them as played and build your golf journey.",
-      color: "bg-blue-500"
+      colorVar: "--feature-blue",
+      colorDarkVar: "--feature-blue-dark"
     },
     {
       icon: Trophy,
       title: "Rankings",
       description: "Discover the world's top-rated holes and courses based on community votes.",
-      color: "bg-green-500"
+      colorVar: "--feature-orange",
+      colorDarkVar: "--feature-orange-dark"
     },
     {
       icon: Users,
       title: "Social",
       description: "Follow friends, share your golf experiences, and see what others are playing.",
-      color: "bg-purple-500"
+      colorVar: "--feature-purple",
+      colorDarkVar: "--feature-purple-dark"
     }
   ];
 
@@ -137,13 +142,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full" style={{ background: 'var(--gradient-green-dark)', opacity: 0.1 }}></div>
-          <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full" style={{ background: 'var(--gradient-green)', opacity: 0.08 }}></div>
-          <div className="absolute top-1/2 right-1/4 w-32 h-32 rounded-full floating" style={{ background: 'var(--primary-green-glow)', opacity: 0.3 }}></div>
-        </div>
+      <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative">
         
         <div className="max-w-7xl mx-auto relative">
           <motion.div 
@@ -182,25 +181,19 @@ export default function Home() {
             </motion.p>
             
             <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
+              className="flex justify-center mb-16"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               <a 
                 href="#waitlist"
-                className="btn-premium text-black px-10 py-5 font-semibold text-xl flex items-center justify-center space-x-3 group"
+                className="btn-premium text-black px-12 py-6 font-semibold text-xl flex items-center justify-center space-x-3 group"
               >
                 <Mail className="w-6 h-6" />
                 <span>Join the Waitlist</span>
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </a>
-              <button className="glass-strong px-10 py-5 font-semibold text-xl transition-all hover:scale-105" style={{ 
-                color: 'var(--primary-green)',
-                boxShadow: 'var(--shadow-medium)'
-              }}>
-                Watch Demo
-              </button>
             </motion.div>
 
             <motion.div
@@ -219,13 +212,7 @@ export default function Home() {
       </section>
 
       {/* Golf Course Gallery */}
-      <section className="py-20 relative overflow-hidden" style={{ background: 'var(--gradient-dark)' }}>
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-10 w-32 h-32 rounded-full floating" style={{ background: 'var(--gradient-green)', opacity: 0.1 }}></div>
-          <div className="absolute bottom-10 left-10 w-24 h-24 rounded-full floating" style={{ background: 'var(--primary-green-glow)', opacity: 0.4, animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 left-1/4 w-16 h-16 rounded-full floating" style={{ background: 'var(--gradient-green-dark)', opacity: 0.15, animationDelay: '4s' }}></div>
-        </div>
+      <section className="py-20 relative" style={{ background: 'var(--gradient-dark)' }}>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
@@ -318,7 +305,7 @@ export default function Home() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {features.map((feature, index) => {
+            {features.map((feature) => {
               return (
                 <motion.div
                   key={feature.title}
@@ -328,22 +315,22 @@ export default function Home() {
                     boxShadow: 'var(--shadow-medium)'
                   }}
                   variants={fadeInUp}
-                  whileHover={{ y: -8, scale: 1.02, boxShadow: 'var(--shadow-green)' }}
+                  whileHover={{ y: -8, scale: 1.02, boxShadow: `0 0 30px var(${feature.colorVar})40` }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                   {/* Background gradient */}
                   <div 
                     className="absolute inset-0 opacity-5 group-hover:opacity-15 transition-opacity duration-300"
                     style={{ 
-                      background: `linear-gradient(135deg, var(--primary-green) 0%, transparent 100%)`
+                      background: `linear-gradient(135deg, var(${feature.colorVar}) 0%, transparent 100%)`
                     }}
                   />
                   
                   <div 
                     className="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 mx-auto relative"
                     style={{ 
-                      background: index % 2 === 0 ? 'var(--gradient-green)' : 'var(--gradient-green-dark)',
-                      boxShadow: 'var(--shadow-green)'
+                      background: `linear-gradient(135deg, var(${feature.colorVar}) 0%, var(${feature.colorDarkVar}) 100%)`,
+                      boxShadow: `0 0 20px var(${feature.colorVar})40`
                     }}
                   >
                     <feature.icon className="w-10 h-10 text-black" />
@@ -358,12 +345,7 @@ export default function Home() {
       </section>
 
       {/* Why TeeRank Section */}
-      <section className="py-20 relative overflow-hidden" style={{ background: 'var(--gradient-surface)' }}>
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-40 h-40 rounded-full floating" style={{ background: 'var(--gradient-green)', opacity: 0.08 }}></div>
-          <div className="absolute bottom-20 right-10 w-32 h-32 rounded-full floating" style={{ background: 'var(--primary-green-glow)', opacity: 0.3, animationDelay: '3s' }}></div>
-        </div>
+      <section className="py-20 relative" style={{ background: 'var(--gradient-surface)' }}>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -428,22 +410,19 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <div 
-                className="glass-strong p-10 relative overflow-hidden"
+                className="glass-strong p-10 relative"
                 style={{ 
                   borderRadius: 'var(--radius-xl)',
                   boxShadow: 'var(--shadow-large)'
                 }}
               >
-                {/* Floating elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full floating" style={{ background: 'var(--gradient-green)', opacity: 0.1 }}></div>
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full floating" style={{ background: 'var(--primary-green-glow)', opacity: 0.4, animationDelay: '2s' }}></div>
                 
                 <div className="text-center mb-8 relative">
                   <div 
                     className="rounded-2xl p-6 mb-6 inline-block"
                     style={{ 
-                      background: 'var(--gradient-green)',
-                      boxShadow: 'var(--shadow-green)'
+                      background: 'linear-gradient(135deg, var(--feature-gold) 0%, var(--feature-gold-dark) 100%)',
+                      boxShadow: '0 0 20px var(--feature-gold)40'
                     }}
                   >
                     <Star className="w-12 h-12 text-black mx-auto" />
@@ -453,7 +432,7 @@ export default function Home() {
                 </div>
                 <div className="flex justify-center space-x-2 mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-8 h-8" style={{ fill: 'var(--primary-green)', color: 'var(--primary-green)' }} />
+                    <Star key={i} className="w-8 h-8" style={{ fill: 'var(--feature-gold)', color: 'var(--feature-gold)' }} />
                   ))}
                 </div>
                 <p className="text-lg text-center italic mb-6 leading-relaxed" style={{ color: 'var(--foreground-soft)' }}>
@@ -482,13 +461,7 @@ export default function Home() {
       </section>
 
       {/* Waitlist Section */}
-      <section id="waitlist" className="py-24 relative overflow-hidden" style={{ background: 'var(--background)' }}>
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 left-20 w-48 h-48 rounded-full floating" style={{ background: 'var(--gradient-green)', opacity: 0.08 }}></div>
-          <div className="absolute bottom-10 right-20 w-32 h-32 rounded-full floating" style={{ background: 'var(--primary-green-glow)', opacity: 0.4, animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-10 w-24 h-24 rounded-full floating" style={{ background: 'var(--gradient-green-dark)', opacity: 0.1, animationDelay: '4s' }}></div>
-        </div>
+      <section id="waitlist" className="py-24 relative" style={{ background: 'var(--background)' }}>
         
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <motion.div {...fadeInUp}>
@@ -531,16 +504,13 @@ export default function Home() {
           ) : (
             <motion.form 
               onSubmit={handleSubmit(onSubmit)}
-              className="glass-strong p-12 max-w-lg mx-auto relative overflow-hidden"
+              className="glass-strong p-12 max-w-lg mx-auto relative"
               style={{ 
                 borderRadius: 'var(--radius-xl)',
                 boxShadow: 'var(--shadow-large)'
               }}
               {...fadeInUp}
             >
-              {/* Form background elements */}
-              <div className="absolute top-0 right-0 w-32 h-32 rounded-full" style={{ background: 'var(--gradient-green)', opacity: 0.05 }}></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full" style={{ background: 'var(--primary-green-glow)', opacity: 0.3 }}></div>
               
               <div className="space-y-6 relative">
                 <div>
