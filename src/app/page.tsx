@@ -110,24 +110,24 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen" style={{ background: 'var(--gradient-hero)' }}>
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-gray-900/90 backdrop-blur-sm border-b border-gray-700 z-50">
+      <nav className="fixed top-0 w-full glass-strong border-b border-white/20 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center space-x-4">
               <Image
                 src="/teerank-logo.png"
                 alt="TeeRank Logo"
-                width={40}
-                height={40}
-                className="rounded-lg"
+                width={48}
+                height={48}
+                className="rounded-xl shadow-md"
               />
-              <span className="text-xl font-bold text-white">TeeRank</span>
+              <span className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>TeeRank</span>
             </div>
             <a 
               href="#waitlist" 
-              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+              className="btn-premium text-white px-6 py-3 font-semibold text-lg"
             >
               Join Waitlist
             </a>
@@ -136,94 +136,124 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full" style={{ background: 'var(--gradient-mocha)', opacity: 0.1 }}></div>
+          <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full" style={{ background: 'var(--gradient-gold)', opacity: 0.1 }}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative">
           <motion.div 
-            className="text-center max-w-4xl mx-auto"
+            className="text-center max-w-5xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <motion.h1 
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6"
+              className="text-6xl sm:text-7xl lg:text-8xl font-black mb-8 leading-tight"
+              style={{ color: 'var(--foreground)' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
               Rate the World&apos;s
-              <span className="text-green-500 block">Greatest Golf Holes</span>
+              <span className="block" style={{ 
+                background: 'var(--gradient-forest)', 
+                WebkitBackgroundClip: 'text', 
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>Greatest Golf Holes</span>
             </motion.h1>
             
             <motion.p 
-              className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed"
+              className="text-2xl sm:text-3xl mb-12 leading-relaxed font-light"
+              style={{ color: 'var(--gray-600)' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
               Discover and rate famous golf holes and courses worldwide. 
+              <br className="hidden sm:block" />
               Build your bucket list, track your journey, and connect with fellow golf enthusiasts.
             </motion.p>
             
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+              className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               <a 
                 href="#waitlist"
-                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2"
+                className="btn-premium text-white px-10 py-5 font-semibold text-xl flex items-center justify-center space-x-3 group"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-6 h-6" />
                 <span>Join the Waitlist</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </a>
-              <button className="border-2 border-gray-600 hover:border-green-500 text-gray-300 hover:text-green-400 px-8 py-4 rounded-xl font-semibold text-lg transition-colors">
+              <button className="glass px-10 py-5 font-semibold text-xl transition-all hover:scale-105" style={{ 
+                color: 'var(--primary-green)',
+                boxShadow: 'var(--shadow-medium)'
+              }}>
                 Watch Demo
               </button>
             </motion.div>
 
-            <motion.p 
-              className="text-sm text-gray-400"
+            <motion.div
+              className="glass-strong px-8 py-4 rounded-full inline-block"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.6 }}
+              style={{ boxShadow: 'var(--shadow-soft)' }}
             >
-              The Letterboxd for golf is coming soon
-            </motion.p>
+              <p className="text-lg font-medium" style={{ color: 'var(--accent-mocha)' }}>
+                ⛳ The Letterboxd for golf is coming soon
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Golf Course Gallery */}
-      <section className="py-16 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 relative overflow-hidden" style={{ background: 'var(--gradient-mocha)' }}>
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 right-10 w-32 h-32 rounded-full floating" style={{ background: 'var(--gradient-gold)', opacity: 0.15 }}></div>
+          <div className="absolute bottom-10 left-10 w-24 h-24 rounded-full floating" style={{ background: 'var(--gradient-forest)', opacity: 0.1, animationDelay: '2s' }}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
-            className="text-center mb-12"
+            className="text-center mb-16"
             {...fadeInUp}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-5xl sm:text-6xl font-bold mb-6" style={{ color: 'var(--surface)' }}>
               Iconic Holes Coming to TeeRank
             </h2>
-            <p className="text-xl text-gray-300">
+            <p className="text-2xl font-light" style={{ color: 'var(--surface)', opacity: 0.9 }}>
               Rate and review the world&apos;s most famous golf holes
             </p>
           </motion.div>
           
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
             variants={stagger}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {golfCourses.map((course) => (
+            {golfCourses.map((course, index) => (
               <motion.div
                 key={course.name}
-                className="relative group overflow-hidden rounded-2xl aspect-[4/3] bg-gray-200"
+                className="relative group overflow-hidden aspect-[4/3] glass-strong"
+                style={{ 
+                  borderRadius: 'var(--radius-lg)',
+                  boxShadow: 'var(--shadow-large)'
+                }}
                 variants={fadeInUp}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.03, y: -10 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <Image
                   src={course.image}
@@ -231,13 +261,24 @@ export default function Home() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-lg font-semibold mb-1">{course.name}</h3>
-                  <p className="text-sm opacity-90">{course.location}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h3 className="text-xl font-bold mb-2">{course.name}</h3>
+                  <p className="text-base opacity-90 flex items-center">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    {course.location}
+                  </p>
                 </div>
-                <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                <div className="absolute top-6 right-6 glass px-4 py-2 text-sm font-semibold" style={{
+                  color: 'var(--primary-green)',
+                  borderRadius: 'var(--radius-md)'
+                }}>
                   Coming Soon
+                </div>
+                
+                {/* Floating badge */}
+                <div className="absolute top-6 left-6 w-8 h-8 rounded-full glass flex items-center justify-center text-white font-bold">
+                  {index + 1}
                 </div>
               </motion.div>
             ))}
@@ -246,16 +287,16 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16">
+      <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-20"
             {...fadeInUp}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-5xl sm:text-6xl font-bold mb-6" style={{ color: 'var(--foreground)' }}>
               Everything You Need to Track Your Golf Journey
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-2xl font-light max-w-4xl mx-auto leading-relaxed" style={{ color: 'var(--gray-600)' }}>
               TeeRank combines the best of social rating platforms with golf-specific features 
               to help you discover, rate, and track the world&apos;s greatest golf experiences.
             </p>
@@ -268,57 +309,110 @@ export default function Home() {
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {features.map((feature) => (
-              <motion.div
-                key={feature.title}
-                className="text-center p-6 rounded-2xl hover:shadow-lg transition-shadow duration-300"
-                variants={fadeInUp}
-              >
-                <div className={`${feature.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto`}>
-                  <feature.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-gray-300 leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
+            {features.map((feature, index) => {
+              const iconColors = [
+                'var(--accent-gold)',
+                'var(--primary-green)', 
+                'var(--accent-mocha)',
+                'var(--primary-green-light)'
+              ];
+              
+              return (
+                <motion.div
+                  key={feature.title}
+                  className="text-center p-8 glass-strong relative overflow-hidden group"
+                  style={{ 
+                    borderRadius: 'var(--radius-lg)',
+                    boxShadow: 'var(--shadow-medium)'
+                  }}
+                  variants={fadeInUp}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  {/* Background gradient */}
+                  <div 
+                    className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-300"
+                    style={{ 
+                      background: `linear-gradient(135deg, ${iconColors[index]} 0%, transparent 100%)`
+                    }}
+                  />
+                  
+                  <div 
+                    className="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 mx-auto relative"
+                    style={{ 
+                      background: `linear-gradient(135deg, ${iconColors[index]} 0%, ${iconColors[index]}CC 100%)`,
+                      boxShadow: 'var(--shadow-soft)'
+                    }}
+                  >
+                    <feature.icon className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>{feature.title}</h3>
+                  <p className="leading-relaxed text-lg" style={{ color: 'var(--gray-600)' }}>{feature.description}</p>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
 
       {/* Why TeeRank Section */}
-      <section className="py-16 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="py-20 relative overflow-hidden" style={{ background: 'var(--surface)' }}>
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-40 h-40 rounded-full floating" style={{ background: 'var(--gradient-gold)', opacity: 0.08 }}></div>
+          <div className="absolute bottom-20 right-10 w-32 h-32 rounded-full floating" style={{ background: 'var(--gradient-forest)', opacity: 0.06, animationDelay: '3s' }}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeInUp}>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <h2 className="text-5xl sm:text-6xl font-bold mb-10" style={{ color: 'var(--foreground)' }}>
                 Why TeeRank?
               </h2>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-green-500 rounded-full p-2 mt-1">
-                    <CheckCircle className="w-5 h-5 text-white" />
+              <div className="space-y-8">
+                <div className="flex items-start space-x-6">
+                  <div 
+                    className="rounded-2xl p-3 mt-1 flex-shrink-0"
+                    style={{ 
+                      background: 'var(--gradient-forest)',
+                      boxShadow: 'var(--shadow-soft)'
+                    }}
+                  >
+                    <CheckCircle className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white mb-2">Discover Hidden Gems</h3>
-                    <p className="text-gray-300">Find amazing golf courses you never knew existed through community recommendations.</p>
+                    <h3 className="font-bold text-2xl mb-3" style={{ color: 'var(--foreground)' }}>Discover Hidden Gems</h3>
+                    <p className="text-xl leading-relaxed" style={{ color: 'var(--gray-600)' }}>Find amazing golf courses you never knew existed through community recommendations and expert insights.</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="bg-green-500 rounded-full p-2 mt-1">
-                    <CheckCircle className="w-5 h-5 text-white" />
+                <div className="flex items-start space-x-6">
+                  <div 
+                    className="rounded-2xl p-3 mt-1 flex-shrink-0"
+                    style={{ 
+                      background: 'var(--gradient-gold)',
+                      boxShadow: 'var(--shadow-soft)'
+                    }}
+                  >
+                    <CheckCircle className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white mb-2">Track Your Journey</h3>
-                    <p className="text-gray-300">Keep a digital record of every course you&apos;ve played and want to play.</p>
+                    <h3 className="font-bold text-2xl mb-3" style={{ color: 'var(--foreground)' }}>Track Your Journey</h3>
+                    <p className="text-xl leading-relaxed" style={{ color: 'var(--gray-600)' }}>Keep a digital record of every course you&apos;ve played and want to play, with detailed statistics and memories.</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="bg-green-500 rounded-full p-2 mt-1">
-                    <CheckCircle className="w-5 h-5 text-white" />
+                <div className="flex items-start space-x-6">
+                  <div 
+                    className="rounded-2xl p-3 mt-1 flex-shrink-0"
+                    style={{ 
+                      background: 'var(--gradient-mocha)',
+                      boxShadow: 'var(--shadow-soft)'
+                    }}
+                  >
+                    <CheckCircle className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white mb-2">Connect with Golfers</h3>
-                    <p className="text-gray-300">Follow friends, share experiences, and get inspired by the golf community.</p>
+                    <h3 className="font-bold text-2xl mb-3" style={{ color: 'var(--foreground)' }}>Connect with Golfers</h3>
+                    <p className="text-xl leading-relaxed" style={{ color: 'var(--gray-600)' }}>Follow friends, share experiences, and get inspired by the passionate golf community worldwide.</p>
                   </div>
                 </div>
               </div>
@@ -331,25 +425,49 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="bg-white rounded-2xl p-8 shadow-xl">
-                <div className="text-center mb-6">
-                  <div className="bg-gray-100 rounded-xl p-4 mb-4">
-                    <Star className="w-8 h-8 text-yellow-500 mx-auto" />
+              <div 
+                className="glass-strong p-10 relative overflow-hidden"
+                style={{ 
+                  borderRadius: 'var(--radius-xl)',
+                  boxShadow: 'var(--shadow-large)'
+                }}
+              >
+                {/* Floating elements */}
+                <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full floating" style={{ background: 'var(--gradient-gold)', opacity: 0.1 }}></div>
+                <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full floating" style={{ background: 'var(--gradient-forest)', opacity: 0.1, animationDelay: '2s' }}></div>
+                
+                <div className="text-center mb-8 relative">
+                  <div 
+                    className="rounded-2xl p-6 mb-6 inline-block"
+                    style={{ 
+                      background: 'var(--gradient-gold)',
+                      boxShadow: 'var(--shadow-medium)'
+                    }}
+                  >
+                    <Star className="w-12 h-12 text-white mx-auto" />
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900">St. Andrews #18</h4>
-                  <p className="text-gray-600">The Home of Golf</p>
+                  <h4 className="text-2xl font-bold mb-2" style={{ color: 'var(--foreground)' }}>St. Andrews #18</h4>
+                  <p className="text-xl" style={{ color: 'var(--gray-600)' }}>The Home of Golf</p>
                 </div>
-                <div className="flex justify-center space-x-1 mb-4">
+                <div className="flex justify-center space-x-2 mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                    <Star key={i} className="w-8 h-8 text-yellow-400" style={{ fill: 'var(--accent-gold)' }} />
                   ))}
                 </div>
-                <p className="text-sm text-gray-600 text-center italic">
-                  &quot;An absolute must-play. The history and atmosphere make this hole unforgettable.&quot;
+                <p className="text-lg text-center italic mb-6 leading-relaxed" style={{ color: 'var(--gray-700)' }}>
+                  &quot;An absolute must-play. The history and atmosphere make this hole unforgettable. Every golfer should experience this legendary finish.&quot;
                 </p>
-                <div className="flex items-center justify-center mt-4 space-x-2">
-                  <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                  <span className="text-sm text-gray-500">@golfpro23</span>
+                <div className="flex items-center justify-center space-x-3">
+                  <div 
+                    className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg"
+                    style={{ background: 'var(--gradient-forest)' }}
+                  >
+                    GP
+                  </div>
+                  <div>
+                    <span className="font-semibold" style={{ color: 'var(--foreground)' }}>@golfpro23</span>
+                    <p className="text-sm" style={{ color: 'var(--gray-600)' }}>Verified Golf Pro</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -358,44 +476,91 @@ export default function Home() {
       </section>
 
       {/* Waitlist Section */}
-      <section id="waitlist" className="py-16 bg-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section id="waitlist" className="py-24 relative overflow-hidden" style={{ background: 'var(--gradient-mocha)' }}>
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-20 w-48 h-48 rounded-full floating" style={{ background: 'var(--gradient-gold)', opacity: 0.1 }}></div>
+          <div className="absolute bottom-10 right-20 w-32 h-32 rounded-full floating" style={{ background: 'var(--gradient-forest)', opacity: 0.08, animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-10 w-24 h-24 rounded-full floating" style={{ background: 'var(--gradient-gold)', opacity: 0.06, animationDelay: '4s' }}></div>
+        </div>
+        
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8" style={{ color: 'var(--surface)' }}>
               Be the First to Experience TeeRank
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-2xl sm:text-3xl font-light max-w-4xl mx-auto leading-relaxed mb-12" style={{ color: 'var(--surface)', opacity: 0.95 }}>
               Join our waitlist and get early access when we launch. Plus, get exclusive updates on new features and golf content.
             </p>
           </motion.div>
 
           {isSubmitted ? (
             <motion.div 
-              className="bg-green-500 rounded-2xl p-8 max-w-md mx-auto"
+              className="glass-strong p-12 max-w-lg mx-auto relative overflow-hidden"
+              style={{ 
+                borderRadius: 'var(--radius-xl)',
+                boxShadow: 'var(--shadow-large)'
+              }}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <CheckCircle className="w-16 h-16 text-white mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-white mb-2">You&apos;re on the list!</h3>
-              <p className="text-green-100">We&apos;ll notify you as soon as TeeRank is available.</p>
+              {/* Success background glow */}
+              <div className="absolute inset-0 opacity-20" style={{ background: 'var(--gradient-forest)' }}></div>
+              
+              <div className="relative">
+                <div 
+                  className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+                  style={{ 
+                    background: 'var(--gradient-forest)',
+                    boxShadow: 'var(--shadow-medium)'
+                  }}
+                >
+                  <CheckCircle className="w-12 h-12 text-white" />
+                </div>
+                <h3 className="text-3xl font-bold mb-4" style={{ color: 'var(--surface)' }}>You&apos;re on the list!</h3>
+                <p className="text-xl" style={{ color: 'var(--surface)', opacity: 0.9 }}>We&apos;ll notify you as soon as TeeRank is available.</p>
+              </div>
             </motion.div>
           ) : (
             <motion.form 
               onSubmit={handleSubmit(onSubmit)}
-              className="bg-white rounded-2xl p-8 max-w-md mx-auto"
+              className="glass-strong p-12 max-w-lg mx-auto relative overflow-hidden"
+              style={{ 
+                borderRadius: 'var(--radius-xl)',
+                boxShadow: 'var(--shadow-large)'
+              }}
               {...fadeInUp}
             >
-              <div className="space-y-4">
+              {/* Form background elements */}
+              <div className="absolute top-0 right-0 w-32 h-32 rounded-full" style={{ background: 'var(--gradient-gold)', opacity: 0.05 }}></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full" style={{ background: 'var(--gradient-forest)', opacity: 0.05 }}></div>
+              
+              <div className="space-y-6 relative">
                 <div>
                   <input
                     {...register("firstName")}
                     type="text"
                     placeholder="First Name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                    className="w-full px-6 py-4 text-lg font-medium outline-none transition-all duration-300"
+                    style={{
+                      background: 'var(--surface)',
+                      color: 'var(--foreground)',
+                      border: `2px solid var(--gray-200)`,
+                      borderRadius: 'var(--radius-md)',
+                      boxShadow: 'var(--shadow-soft)'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = 'var(--primary-green)';
+                      e.target.style.boxShadow = 'var(--shadow-medium)';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = 'var(--gray-200)';
+                      e.target.style.boxShadow = 'var(--shadow-soft)';
+                    }}
                   />
                   {errors.firstName && (
-                    <p className="text-red-500 text-sm mt-1">{errors.firstName.message}</p>
+                    <p className="text-red-500 text-base mt-2 font-medium">{errors.firstName.message}</p>
                   )}
                 </div>
                 
@@ -404,32 +569,47 @@ export default function Home() {
                     {...register("email")}
                     type="email"
                     placeholder="Email Address"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                    className="w-full px-6 py-4 text-lg font-medium outline-none transition-all duration-300"
+                    style={{
+                      background: 'var(--surface)',
+                      color: 'var(--foreground)',
+                      border: `2px solid var(--gray-200)`,
+                      borderRadius: 'var(--radius-md)',
+                      boxShadow: 'var(--shadow-soft)'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = 'var(--primary-green)';
+                      e.target.style.boxShadow = 'var(--shadow-medium)';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = 'var(--gray-200)';
+                      e.target.style.boxShadow = 'var(--shadow-soft)';
+                    }}
                   />
                   {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                    <p className="text-red-500 text-base mt-2 font-medium">{errors.email.message}</p>
                   )}
                 </div>
-                
                 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-green-500 hover:bg-green-600 disabled:bg-green-400 text-white py-3 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+                  className="w-full btn-premium text-white py-5 font-bold text-xl flex items-center justify-center space-x-3 group"
                 >
                   {isSubmitting ? (
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin" />
                   ) : (
                     <>
-                      <Mail className="w-5 h-5" />
+                      <Mail className="w-6 h-6" />
                       <span>Join Waitlist</span>
+                      <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                     </>
                   )}
                 </button>
               </div>
               
-              <p className="text-xs text-gray-500 mt-4">
-                We&apos;ll never spam you. Unsubscribe at any time.
+              <p className="text-base mt-6 font-medium" style={{ color: 'var(--surface)', opacity: 0.8 }}>
+                \u26f3 We&apos;ll never spam you. Unsubscribe at any time.
               </p>
             </motion.form>
           )}
@@ -437,48 +617,78 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+      <footer className="py-16 relative overflow-hidden" style={{ background: 'var(--surface-soft)' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+            <div className="flex items-center space-x-4">
               <Image
                 src="/teerank-logo.png"
                 alt="TeeRank Logo"
-                width={40}
-                height={40}
-                className="rounded-lg"
+                width={56}
+                height={56}
+                className="rounded-2xl"
+                style={{ boxShadow: 'var(--shadow-soft)' }}
               />
-              <span className="text-xl font-bold text-white">TeeRank</span>
+              <div>
+                <span className="text-3xl font-bold" style={{ color: 'var(--foreground)' }}>TeeRank</span>
+                <p className="text-base font-medium" style={{ color: 'var(--gray-500)' }}>The future of golf discovery</p>
+              </div>
             </div>
             
-            <div className="flex items-center space-x-6 mb-4 md:mb-0">
-              <a href="mailto:hello@teeranks.com" className="text-gray-300 hover:text-green-500 transition-colors">
+            <div className="flex items-center justify-center space-x-8">
+              <a 
+                href="mailto:hello@teeranks.com" 
+                className="text-lg font-semibold transition-all duration-300 hover:scale-105 hover:text-[var(--primary-green)]"
+                style={{ color: 'var(--gray-600)' }}
+              >
                 Contact
               </a>
-              <a href="/privacy" className="text-gray-300 hover:text-green-500 transition-colors">
+              <a 
+                href="/privacy" 
+                className="text-lg font-semibold transition-all duration-300 hover:scale-105 hover:text-[var(--primary-green)]"
+                style={{ color: 'var(--gray-600)' }}
+              >
                 Privacy
               </a>
-              <a href="/terms" className="text-gray-300 hover:text-green-500 transition-colors">
+              <a 
+                href="/terms" 
+                className="text-lg font-semibold transition-all duration-300 hover:scale-105 hover:text-[var(--primary-green)]"
+                style={{ color: 'var(--gray-600)' }}
+              >
                 Terms
               </a>
             </div>
             
-            <div className="flex items-center space-x-4">
-              <a href="#" className="text-gray-300 hover:text-green-500 transition-colors">
-                <Instagram className="w-5 h-5" />
+            <div className="flex items-center justify-end space-x-4">
+              <a 
+                href="#" 
+                className="glass w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                style={{ boxShadow: 'var(--shadow-soft)' }}
+              >
+                <Instagram className="w-6 h-6 transition-colors text-[var(--gray-600)] group-hover:text-[var(--primary-green)]" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-green-500 transition-colors">
-                <Twitter className="w-5 h-5" />
+              <a 
+                href="#" 
+                className="glass w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                style={{ boxShadow: 'var(--shadow-soft)' }}
+              >
+                <Twitter className="w-6 h-6 transition-colors text-[var(--gray-600)] group-hover:text-[var(--primary-green)]" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-green-500 transition-colors">
-                <Facebook className="w-5 h-5" />
+              <a 
+                href="#" 
+                className="glass w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                style={{ boxShadow: 'var(--shadow-soft)' }}
+              >
+                <Facebook className="w-6 h-6 transition-colors text-[var(--gray-600)] group-hover:text-[var(--primary-green)]" />
               </a>
             </div>
           </div>
           
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-            <p className="text-gray-400">
-              © 2025 TeeRank. All rights reserved. Made with ⛳ for golf enthusiasts.
+          <div className="mt-12 pt-8 text-center" style={{ borderTop: `1px solid var(--gray-200)` }}>
+            <p className="text-lg font-medium" style={{ color: 'var(--gray-500)' }}>
+              © 2025 TeeRank. All rights reserved. Made with 
+              <span className="mx-2" style={{ color: 'var(--accent-gold)' }}>⛳</span> 
+              for golf enthusiasts worldwide.
             </p>
           </div>
         </div>
