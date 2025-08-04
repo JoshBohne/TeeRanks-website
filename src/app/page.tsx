@@ -6,9 +6,6 @@ import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
-import type { Swiper as SwiperType } from 'swiper';
 import { 
   Star, 
   MapPin, 
@@ -24,6 +21,11 @@ import {
   ChevronRight
 } from "lucide-react";
 import { BucketIcon } from "../components/BucketIcon";
+
+// Import Swiper React components and modules
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -308,8 +310,8 @@ export default function Home() {
             </button>
 
             <Swiper
-              ref={(swiper) => {
-                if (swiper) swiperRef.current = swiper;
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper;
               }}
               modules={[Navigation, Pagination, EffectCoverflow]}
               spaceBetween={30}
@@ -346,7 +348,7 @@ export default function Home() {
                 paddingBottom: '60px',
               }}
             >
-              {golfCourses.map((course, index) => (
+              {golfCourses.map((course) => (
                 <SwiperSlide key={course.name}>
                   <motion.div
                     className="relative overflow-hidden glass-strong cursor-grab active:cursor-grabbing group"
@@ -464,12 +466,7 @@ export default function Home() {
                     className="w-32 h-32 rounded-full flex items-center justify-center mb-8 mx-auto relative"
                     style={{ 
                       background: `linear-gradient(135deg, var(${feature.colorVar}) 0%, var(${feature.colorDarkVar}) 100%)`,
-                      boxShadow: `0 0 30px var(${feature.colorVar})40, 0 8px 16px rgba(0,0,0,0.15)`,
-                      shadowColor: '#000',
-                      shadowOffset: { width: 0, height: 8 },
-                      shadowOpacity: 0.25,
-                      shadowRadius: 16,
-                      elevation: 16
+                      boxShadow: `0 0 30px var(${feature.colorVar})40, 0 8px 16px rgba(0,0,0,0.15)`
                     }}
                   >
                     <feature.icon className="w-12 h-12 text-white" />
