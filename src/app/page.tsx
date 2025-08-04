@@ -16,7 +16,9 @@ import {
   CheckCircle,
   Instagram,
   X,
-  Facebook
+  Facebook,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { BucketIcon } from "../components/BucketIcon";
 
@@ -30,6 +32,7 @@ type WaitlistForm = z.infer<typeof waitlistSchema>;
 export default function Home() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentHoleIndex, setCurrentHoleIndex] = useState(0);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<WaitlistForm>({
     resolver: zodResolver(waitlistSchema),
@@ -58,6 +61,14 @@ export default function Home() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const nextHole = () => {
+    setCurrentHoleIndex((prev) => (prev + 1) % golfCourses.length);
+  };
+
+  const prevHole = () => {
+    setCurrentHoleIndex((prev) => (prev - 1 + golfCourses.length) % golfCourses.length);
   };
 
   const features = [
@@ -227,50 +238,84 @@ export default function Home() {
             </p>
           </motion.div>
           
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
-            variants={stagger}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {golfCourses.map((course) => (
-              <motion.div
-                key={course.name}
-                className="relative group overflow-hidden aspect-[4/3] glass-strong"
-                style={{ 
-                  borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--shadow-large)'
-                }}
-                variants={fadeInUp}
-                whileHover={{ scale: 1.03, y: -10, boxShadow: 'var(--shadow-green)' }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-              >
-                <Image
-                  src={course.image}
-                  alt={course.name}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-xl font-bold mb-2">{course.name}</h3>
-                  <p className="text-base opacity-90 flex items-center">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    {course.location}
-                  </p>
-                </div>
-                <div className="absolute top-6 right-6 px-4 py-2 text-sm font-semibold rounded-lg" style={{
-                  background: 'var(--gradient-green)',
-                  color: 'var(--background)',
-                  boxShadow: 'var(--shadow-green)'
-                }}>
-                  Coming Soon
-                </div>
+          {/* Swipeable Stack Container */}
+          <div className="relative max-w-2xl mx-auto mb-12">
+            <div className="relative h-96 flex items-center justify-center">
+              {golfCourses.map((course, index) => {
+                const offset = index - currentHoleIndex;
+                const absOffset = Math.abs(offset);
+                const isVisible = absOffset <= 2;
                 
-              </motion.div>
+                return (
+                  <motion.div
+                    key={course.name}
+                    className="absolute inset-0 glass-strong overflow-hidden aspect-[4/3]"
+                    style={{ 
+                      borderRadius: 'var(--radius-lg)',
+                      boxShadow: 'var(--shadow-large)',
+                      zIndex: 10 - absOffset,
+                      opacity: isVisible ? (1 - absOffset * 0.2) : 0,
+                      visibility: isVisible ? 'visible' : 'hidden'
+                    }}
+                    animate={{
+                      x: offset * 40,
+                      y: absOffset * 20,
+                      scale: 1 - absOffset * 0.05,
+                      rotateY: offset * 15
+                    }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  >
+                    <Image
+                      src={course.image}
+                      alt={course.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                    <div className="absolute bottom-6 left-6 text-white">
+                      <h3 className="text-xl font-bold mb-2">{course.name}</h3>
+                      <p className="text-base opacity-90 flex items-center">
+                        <MapPin className="w-4 h-4 mr-2" />
+                        {course.location}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+            
+            {/* Navigation Buttons */}
+            <button
+              onClick={prevHole}
+              className="absolute left-4 top-1/2 -translate-y-1/2 glass-strong w-12 h-12 rounded-full flex items-center justify-center z-20 transition-all duration-300 hover:scale-110"
+              style={{ boxShadow: 'var(--shadow-medium)' }}
+            >
+              <ChevronLeft className="w-6 h-6" style={{ color: 'var(--foreground)' }} />
+            </button>
+            
+            <button
+              onClick={nextHole}
+              className="absolute right-4 top-1/2 -translate-y-1/2 glass-strong w-12 h-12 rounded-full flex items-center justify-center z-20 transition-all duration-300 hover:scale-110"
+              style={{ boxShadow: 'var(--shadow-medium)' }}
+            >
+              <ChevronRight className="w-6 h-6" style={{ color: 'var(--foreground)' }} />
+            </button>
+          </div>
+          
+          {/* Pagination Dots */}
+          <div className="flex justify-center space-x-3">
+            {golfCourses.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentHoleIndex(index)}
+                className="w-3 h-3 rounded-full transition-all duration-300"
+                style={{
+                  backgroundColor: index === currentHoleIndex ? 'var(--primary-green)' : 'var(--gray-300)',
+                  boxShadow: index === currentHoleIndex ? 'var(--shadow-green)' : 'none'
+                }}
+              />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -319,13 +364,18 @@ export default function Home() {
                   />
                   
                   <div 
-                    className="w-20 h-20 rounded-3xl flex items-center justify-center mb-6 mx-auto relative"
+                    className="w-32 h-32 rounded-full flex items-center justify-center mb-8 mx-auto relative"
                     style={{ 
                       background: `linear-gradient(135deg, var(${feature.colorVar}) 0%, var(${feature.colorDarkVar}) 100%)`,
-                      boxShadow: `0 0 20px var(${feature.colorVar})40`
+                      boxShadow: `0 0 30px var(${feature.colorVar})40, 0 8px 16px rgba(0,0,0,0.15)`,
+                      shadowColor: '#000',
+                      shadowOffset: { width: 0, height: 8 },
+                      shadowOpacity: 0.25,
+                      shadowRadius: 16,
+                      elevation: 16
                     }}
                   >
-                    <feature.icon className="w-10 h-10 text-black" />
+                    <feature.icon className="w-12 h-12 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>{feature.title}</h3>
                   <p className="leading-relaxed text-lg" style={{ color: 'var(--gray-600)' }}>{feature.description}</p>
