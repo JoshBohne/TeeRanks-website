@@ -91,21 +91,21 @@ export default function Home() {
     {
       icon: Star,
       title: "Rate & Review",
-      description: "Swipe through famous golf holes and courses. Rate them 0-10 and discover hidden gems.",
+      description: "Swipe through famous golf holes and courses and rate them 0-10.",
       colorVar: "--feature-gold",
       colorDarkVar: "--feature-gold-dark"
     },
     {
       icon: BucketIcon,
       title: "Bucket List",
-      description: "Track your must-play courses worldwide. Mark them as played and build your golf journey.",
+      description: "Track your must-play courses worldwide. Mark them as played and give them a rating as you progress through your golf journey.",
       colorVar: "--feature-blue",
       colorDarkVar: "--feature-blue-dark"
     },
     {
       icon: Trophy,
       title: "Rankings",
-      description: "Discover the world's top-rated holes and courses based on community votes.",
+      description: "Discover the worlds top-rated holes, courses, and lists based on community votes.",
       colorVar: "--feature-orange",
       colorDarkVar: "--feature-orange-dark"
     },
@@ -259,17 +259,6 @@ export default function Home() {
               </a>
             </motion.div>
 
-            <motion.div
-              className="glass-strong px-8 py-4 rounded-full inline-block"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              style={{ boxShadow: 'var(--shadow-soft)' }}
-            >
-              <p className="text-lg font-medium" style={{ color: 'var(--primary-green)' }}>
-                ⛳ The &ldquo;Letterboxd for golf&rdquo;
-              </p>
-            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -283,7 +272,7 @@ export default function Home() {
             {...fadeInUp}
           >
             <h2 className="text-5xl sm:text-6xl font-bold mb-6" style={{ color: 'var(--foreground)' }}>
-              Iconic Holes Coming to TeeRank
+              Featuring the worlds most recognizable holes and courses
             </h2>
             <p className="text-2xl font-light" style={{ color: 'var(--foreground-soft)' }}>
               Rate and review the world&apos;s most famous golf holes
