@@ -168,7 +168,7 @@ export default function Home() {
         
         .swiper-slide-shadow-left,
         .swiper-slide-shadow-right {
-          background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1)) !important;
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)) !important;
         }
         
         @media (max-width: 1024px) {
@@ -221,14 +221,14 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
-              Rate the World&apos;s
+              Welcome to
               <span className="block" style={{ 
                 background: 'var(--gradient-green)', 
                 WebkitBackgroundClip: 'text', 
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
                 filter: 'drop-shadow(0 0 10px var(--primary-green-glow))'
-              }}>Greatest Golf Holes</span>
+              }}>TeeRank</span>
             </motion.h1>
             
             <motion.p 
@@ -383,7 +383,7 @@ export default function Home() {
                     </div>
 
                     {/* Hover Effect Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </motion.div>
                 </SwiperSlide>
               ))}
@@ -469,7 +469,7 @@ export default function Home() {
                       boxShadow: `0 0 30px var(${feature.colorVar})40, 0 8px 16px rgba(0,0,0,0.15)`
                     }}
                   >
-                    <feature.icon className="w-12 h-12 text-white" />
+                    <feature.icon className="w-12 h-12 text-white" fill="currentColor" />
                   </div>
                   <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>{feature.title}</h3>
                   <p className="leading-relaxed text-lg" style={{ color: 'var(--gray-600)' }}>{feature.description}</p>
