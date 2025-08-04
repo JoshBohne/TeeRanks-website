@@ -16,9 +16,9 @@ import {
   CheckCircle,
   Instagram,
   X,
-  Facebook,
-  ShoppingBag
+  Facebook
 } from "lucide-react";
+import { BucketIcon } from "../components/BucketIcon";
 
 const waitlistSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -69,7 +69,7 @@ export default function Home() {
       colorDarkVar: "--feature-gold-dark"
     },
     {
-      icon: ShoppingBag,
+      icon: BucketIcon,
       title: "Bucket List",
       description: "Track your must-play courses worldwide. Mark them as played and build your golf journey.",
       colorVar: "--feature-blue",
