@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 import { 
   Star, 
   MapPin, 
@@ -22,6 +25,12 @@ import {
 } from "lucide-react";
 import { BucketIcon } from "../components/BucketIcon";
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+
 const waitlistSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   firstName: z.string().min(2, "First name must be at least 2 characters"),
@@ -33,6 +42,7 @@ export default function Home() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentHoleIndex, setCurrentHoleIndex] = useState(0);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<WaitlistForm>({
     resolver: zodResolver(waitlistSchema),
@@ -64,11 +74,15 @@ export default function Home() {
   };
 
   const nextHole = () => {
-    setCurrentHoleIndex((prev) => (prev + 1) % golfCourses.length);
+    swiperRef.current?.slideNext();
   };
 
   const prevHole = () => {
-    setCurrentHoleIndex((prev) => (prev - 1 + golfCourses.length) % golfCourses.length);
+    swiperRef.current?.slidePrev();
+  };
+
+  const handleSlideChange = (swiper: SwiperType) => {
+    setCurrentHoleIndex(swiper.activeIndex);
   };
 
   const features = [
@@ -126,14 +140,50 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--gradient-hero)' }}>
+    <>
+      <style jsx global>{`
+        .hole-swiper .swiper-slide {
+          transition: all 0.3s ease;
+        }
+        
+        .hole-swiper .swiper-slide:not(.swiper-slide-active) {
+          opacity: 0.7;
+          transform: scale(0.95);
+        }
+        
+        .hole-swiper .swiper-slide-active {
+          opacity: 1;
+          transform: scale(1);
+        }
+        
+        .hole-swiper .swiper-wrapper {
+          align-items: center;
+        }
+        
+        .hole-swiper {
+          overflow: visible !important;
+        }
+        
+        .swiper-slide-shadow-left,
+        .swiper-slide-shadow-right {
+          background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1)) !important;
+        }
+        
+        @media (max-width: 1024px) {
+          .hole-swiper .swiper-slide:not(.swiper-slide-active) {
+            opacity: 0.8;
+            transform: scale(0.98);
+          }
+        }
+      `}</style>
+      <div className="min-h-screen" style={{ background: 'var(--gradient-hero)' }}>
       {/* Navigation */}
       <nav className="fixed top-0 w-full glass-dark border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
               <Image
-                src="/teerank-logo.png"
+                src="/TeeRankLogo2.png"
                 alt="TeeRank Logo"
                 width={48}
                 height={48}
@@ -238,83 +288,130 @@ export default function Home() {
             </p>
           </motion.div>
           
-          {/* Swipeable Stack Container */}
-          <div className="relative max-w-2xl mx-auto mb-12">
-            <div className="relative h-96 flex items-center justify-center">
-              {golfCourses.map((course, index) => {
-                const offset = index - currentHoleIndex;
-                const absOffset = Math.abs(offset);
-                const isVisible = absOffset <= 2;
-                
-                return (
+          {/* Modern Swiper Carousel */}
+          <div className="relative max-w-5xl mx-auto">
+            {/* Navigation Buttons - Outside Container */}
+            <button
+              onClick={prevHole}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 glass-strong w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-white/20 group"
+              style={{ boxShadow: 'var(--shadow-large)', left: '-80px' }}
+            >
+              <ChevronLeft className="w-8 h-8 transition-colors group-hover:text-white" style={{ color: 'var(--primary-green)' }} />
+            </button>
+            
+            <button
+              onClick={nextHole}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 glass-strong w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-white/20 group"
+              style={{ boxShadow: 'var(--shadow-large)', right: '-80px' }}
+            >
+              <ChevronRight className="w-8 h-8 transition-colors group-hover:text-white" style={{ color: 'var(--primary-green)' }} />
+            </button>
+
+            <Swiper
+              ref={(swiper) => {
+                if (swiper) swiperRef.current = swiper;
+              }}
+              modules={[Navigation, Pagination, EffectCoverflow]}
+              spaceBetween={30}
+              slidesPerView={1}
+              centeredSlides={true}
+              loop={true}
+              speed={600}
+              effect="coverflow"
+              coverflowEffect={{
+                rotate: 15,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 1.2,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 1.5,
+                  spaceBetween: 30,
+                },
+                1024: {
+                  slidesPerView: 1.8,
+                  spaceBetween: 40,
+                },
+              }}
+              onSlideChange={handleSlideChange}
+              className="hole-swiper"
+              style={{
+                paddingTop: '20px',
+                paddingBottom: '60px',
+              }}
+            >
+              {golfCourses.map((course, index) => (
+                <SwiperSlide key={course.name}>
                   <motion.div
-                    key={course.name}
-                    className="absolute inset-0 glass-strong overflow-hidden aspect-[4/3]"
+                    className="relative overflow-hidden glass-strong cursor-grab active:cursor-grabbing group"
                     style={{ 
                       borderRadius: 'var(--radius-lg)',
                       boxShadow: 'var(--shadow-large)',
-                      zIndex: 10 - absOffset,
-                      opacity: isVisible ? (1 - absOffset * 0.2) : 0,
-                      visibility: isVisible ? 'visible' : 'hidden'
+                      aspectRatio: '16/10',
+                      height: '400px'
                     }}
-                    animate={{
-                      x: offset * 40,
-                      y: absOffset * 20,
-                      scale: 1 - absOffset * 0.05,
-                      rotateY: offset * 15
+                    whileHover={{ 
+                      scale: 1.02,
+                      boxShadow: 'var(--shadow-green-strong)',
+                      transition: { duration: 0.3 }
                     }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
                   >
                     <Image
                       src={course.image}
                       alt={course.name}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 60vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                    <div className="absolute bottom-6 left-6 text-white">
-                      <h3 className="text-xl font-bold mb-2">{course.name}</h3>
-                      <p className="text-base opacity-90 flex items-center">
-                        <MapPin className="w-4 h-4 mr-2" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                    
+                    {/* Content */}
+                    <div className="absolute bottom-8 left-8 text-white z-10">
+                      <h3 className="text-2xl font-bold mb-3 leading-tight">{course.name}</h3>
+                      <p className="text-lg opacity-90 flex items-center font-medium">
+                        <MapPin className="w-5 h-5 mr-3" />
                         {course.location}
                       </p>
                     </div>
+
+                    {/* Hover Effect Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </motion.div>
-                );
-              })}
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            
+            {/* Custom Pagination Dots */}
+            <div className="flex justify-center space-x-4 mt-8">
+              {golfCourses.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => swiperRef.current?.slideToLoop(index)}
+                  className="relative transition-all duration-300 group"
+                >
+                  <div
+                    className="w-4 h-4 rounded-full transition-all duration-300"
+                    style={{
+                      backgroundColor: index === currentHoleIndex ? 'var(--primary-green)' : 'var(--gray-400)',
+                      boxShadow: index === currentHoleIndex ? 'var(--shadow-green)' : 'none',
+                      transform: index === currentHoleIndex ? 'scale(1.2)' : 'scale(1)'
+                    }}
+                  />
+                  {index === currentHoleIndex && (
+                    <div
+                      className="absolute inset-0 rounded-full animate-ping"
+                      style={{ backgroundColor: 'var(--primary-green)', opacity: 0.3 }}
+                    />
+                  )}
+                </button>
+              ))}
             </div>
-            
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevHole}
-              className="absolute left-4 top-1/2 -translate-y-1/2 glass-strong w-12 h-12 rounded-full flex items-center justify-center z-20 transition-all duration-300 hover:scale-110"
-              style={{ boxShadow: 'var(--shadow-medium)' }}
-            >
-              <ChevronLeft className="w-6 h-6" style={{ color: 'var(--foreground)' }} />
-            </button>
-            
-            <button
-              onClick={nextHole}
-              className="absolute right-4 top-1/2 -translate-y-1/2 glass-strong w-12 h-12 rounded-full flex items-center justify-center z-20 transition-all duration-300 hover:scale-110"
-              style={{ boxShadow: 'var(--shadow-medium)' }}
-            >
-              <ChevronRight className="w-6 h-6" style={{ color: 'var(--foreground)' }} />
-            </button>
-          </div>
-          
-          {/* Pagination Dots */}
-          <div className="flex justify-center space-x-3">
-            {golfCourses.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentHoleIndex(index)}
-                className="w-3 h-3 rounded-full transition-all duration-300"
-                style={{
-                  backgroundColor: index === currentHoleIndex ? 'var(--primary-green)' : 'var(--gray-300)',
-                  boxShadow: index === currentHoleIndex ? 'var(--shadow-green)' : 'none'
-                }}
-              />
-            ))}
           </div>
         </div>
       </section>
@@ -640,7 +737,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
             <div className="flex items-center space-x-4">
               <Image
-                src="/teerank-logo.png"
+                src="/TeeRankLogo2.png"
                 alt="TeeRank Logo"
                 width={56}
                 height={56}
@@ -711,6 +808,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }
