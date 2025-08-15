@@ -23,6 +23,13 @@ npm start
 
 # Lint code
 npm run lint
+
+# E2E Testing with Playwright
+npm run test:e2e              # Run all E2E tests
+npm run test:e2e:ui           # Run tests with interactive UI
+npm run test:e2e:debug        # Run tests in debug mode
+npm run test:e2e:headed       # Run tests with visible browser
+npm run test:e2e:report       # View test results report
 ```
 
 ## Tech Stack
@@ -48,6 +55,12 @@ npm run lint
 - **PostCSS** for Tailwind CSS processing
 - **TypeScript** strict mode enabled
 
+### Testing
+- **Playwright 1.54** for E2E testing across browsers
+- **Cross-browser testing**: Chromium, Firefox, WebKit
+- **Mobile testing**: iPhone 12 and Pixel 5 viewports
+- **Test coverage**: Forms, navigation, gallery, responsive design
+
 ## Architecture Overview
 
 ### App Router Structure
@@ -64,6 +77,16 @@ src/app/
 ├── globals.css              # Global styles and Tailwind imports
 ├── layout.tsx               # Root layout with SEO meta tags
 └── page.tsx                 # Main landing page component
+
+tests/
+├── e2e/                     # End-to-end test suites
+│   ├── waitlist.spec.ts     # Waitlist form validation and submission
+│   ├── gallery.spec.ts      # Swiper gallery interactions
+│   ├── navigation.spec.ts   # Page navigation and scrolling
+│   └── responsive.spec.ts   # Responsive design across viewports
+├── fixtures/
+│   └── test-data.ts         # Reusable test data and constants
+└── playwright.config.ts     # Playwright configuration
 ```
 
 ### Public Assets Structure
@@ -287,9 +310,12 @@ GOOGLE_ANALYTICS_ID=your_ga_id
 
 ### Quality Assurance
 - Run `npm run lint` before committing changes
+- **Run E2E tests**: `npm run test:e2e` before major releases
 - Test waitlist form functionality in both success and error states
 - Verify responsive design across mobile, tablet, and desktop
 - Check animation performance and accessibility
+- **Cross-browser testing**: Verify functionality in Chrome, Firefox, Safari
+- **Mobile testing**: Test on actual devices when possible
 
 ### Content Management
 - Maintain high-quality golf course images with consistent aspect ratios
@@ -308,3 +334,65 @@ GOOGLE_ANALYTICS_ID=your_ga_id
 - Maintain fast page load times
 - Use semantic HTML structure
 - Implement proper meta tag management
+
+## E2E Testing with Playwright
+
+### Test Structure
+The test suite covers four critical areas:
+
+#### 1. Waitlist Form Testing (`waitlist.spec.ts`)
+- **Form validation**: Email and name field validation
+- **Submission flow**: Success and error state handling
+- **User experience**: Form clearing and error recovery
+- **Accessibility**: Keyboard navigation and focus management
+
+#### 2. Gallery Testing (`gallery.spec.ts`)
+- **Swiper functionality**: Navigation arrows and slide transitions
+- **Image loading**: Proper src attributes and alt text
+- **Responsive behavior**: Gallery adaptation across viewports
+- **Performance**: Rapid navigation and animation handling
+
+#### 3. Navigation Testing (`navigation.spec.ts`)
+- **Smooth scrolling**: Section-to-section navigation
+- **Header behavior**: Fixed/sticky header functionality
+- **Keyboard navigation**: Tab order and focus management
+- **URL handling**: Anchor links and browser history
+
+#### 4. Responsive Design Testing (`responsive.spec.ts`)
+- **Multi-viewport testing**: Mobile (375px), Tablet (768px), Desktop (1920px)
+- **Layout adaptation**: Content reflow and component sizing
+- **Touch interactions**: Mobile tap and swipe gestures
+- **Cross-viewport consistency**: Feature preservation across sizes
+
+### Running Tests
+
+```bash
+# Run all tests headlessly
+npm run test:e2e
+
+# Interactive test runner with browser UI
+npm run test:e2e:ui
+
+# Debug mode with step-by-step execution
+npm run test:e2e:debug
+
+# Run with visible browser (non-headless)
+npm run test:e2e:headed
+
+# View detailed test report
+npm run test:e2e:report
+```
+
+### Test Configuration
+- **Auto-start dev server**: Tests automatically start `npm run dev`
+- **Multi-browser**: Tests run on Chromium, Firefox, WebKit, Mobile Chrome, Mobile Safari
+- **Screenshots**: Captured on test failures
+- **Video recording**: Available for debugging failed tests
+- **Parallel execution**: Tests run in parallel for faster feedback
+
+### Best Practices for Test Maintenance
+1. **Update test data**: Modify `tests/fixtures/test-data.ts` when UI changes
+2. **Add tests for new features**: Extend existing spec files or create new ones
+3. **Verify after changes**: Run tests before merging significant UI updates
+4. **Check all browsers**: Use `npm run test:e2e` to test cross-browser compatibility
+5. **Debug failures**: Use `npm run test:e2e:debug` to step through failing tests
