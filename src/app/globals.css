@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  /* Dark Theme Color Palette */
-  --background: #0A0A0A;      /* Deep black background */
-  --background-soft: #111111; /* Soft black for variety */
-  --foreground: #FFFFFF;      /* Pure white text */
-  --foreground-soft: #E5E5E5; /* Soft white for secondary text */
-  --surface: #1F1F1F;         /* Dark gray surfaces */
-  --surface-soft: #2A2A2A;    /* Lighter gray for cards */
-  --surface-light: #333333;   /* Even lighter gray for hover states */
+  /* Light Theme Color Palette */
+  --background: #ffffff;      /* Pure white background */
+  --background-soft: #f9fafb; /* Soft gray for variety */
+  --foreground: #111827;      /* Dark text */
+  --foreground-soft: #374151; /* Soft dark for secondary text */
+  --surface: #ffffff;         /* White surfaces */
+  --surface-soft: #f3f4f6;    /* Light gray for cards */
+  --surface-light: #e5e7eb;   /* Lighter gray for hover states */
   
   /* Green Brand Colors */
   --primary-green: #00FF7F;      /* Vibrant spring green */
@@ -19,12 +19,64 @@
   /* Feature Colors */
   --feature-gold: #FFD700;       /* Gold for star/rating features */
   --feature-gold-dark: #F59E0B;  /* Darker gold for gradients */
-  --feature-blue: #3B82F6;       /* Blue for bucket list features */
-  --feature-blue-dark: #2563EB;  /* Darker blue for gradients */
+  --feature-blue: #1F2937;       /* Dark gray for bucket list features (matching app) */
+  --feature-blue-dark: #111827;  /* Darker gray for gradients (matching app) */
   --feature-orange: #F97316;     /* Orange for rankings features */
   --feature-orange-dark: #EA580C; /* Darker orange for gradients */
   --feature-purple: #8B5CF6;     /* Purple for social features */
   --feature-purple-dark: #7C3AED; /* Darker purple for gradients */
+  
+  /* Light Theme Grays */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  
+  /* Semantic Colors */
+  --success: var(--primary-green);
+  --warning: #FBBF24;
+  --error: #EF4444;
+  --info: #66BB6A;
+  
+  /* Light Theme Gradients */
+  --gradient-hero: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  --gradient-dark: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  --gradient-green: linear-gradient(135deg, #00FF7F 0%, #32CD32 100%);
+  --gradient-green-dark: linear-gradient(135deg, #0D7C47 0%, #00FF7F 100%);
+  --gradient-glass-dark: linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.02) 100%);
+  --gradient-surface: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+  
+  /* Light Theme Shadows */
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-large: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-green: 0 0 20px var(--primary-green-glow);
+  --shadow-green-strong: 0 0 30px rgba(0, 255, 127, 0.3);
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  /* Dark Theme Color Palette */
+  --background: #0A0A0A;      /* Deep black background */
+  --background-soft: #111111; /* Soft black for variety */
+  --foreground: #FFFFFF;      /* Pure white text */
+  --foreground-soft: #E5E5E5; /* Soft white for secondary text */
+  --surface: #1F1F1F;         /* Dark gray surfaces */
+  --surface-soft: #2A2A2A;    /* Lighter gray for cards */
+  --surface-light: #333333;   /* Even lighter gray for hover states */
   
   /* Dark Theme Grays */
   --gray-50: #1A1A1A;
@@ -38,17 +90,9 @@
   --gray-800: #E5E5E5;
   --gray-900: #F5F5F5;
   
-  /* Semantic Colors */
-  --success: var(--primary-green);
-  --warning: #FBBF24;
-  --error: #EF4444;
-  --info: #3B82F6;
-  
   /* Dark Theme Gradients */
   --gradient-hero: linear-gradient(135deg, #0A0A0A 0%, #111111 100%);
   --gradient-dark: linear-gradient(135deg, #1F1F1F 0%, #2A2A2A 100%);
-  --gradient-green: linear-gradient(135deg, #00FF7F 0%, #32CD32 100%);
-  --gradient-green-dark: linear-gradient(135deg, #0D7C47 0%, #00FF7F 100%);
   --gradient-glass-dark: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
   --gradient-surface: linear-gradient(135deg, #2A2A2A 0%, #1F1F1F 100%);
   
@@ -57,14 +101,6 @@
   --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
   --shadow-large: 0 8px 32px rgba(0, 0, 0, 0.5);
   --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.2);
-  --shadow-green: 0 0 20px var(--primary-green-glow);
-  --shadow-green-strong: 0 0 30px rgba(0, 255, 127, 0.3);
-  
-  /* Border Radius */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
 }
 
 @theme inline {
@@ -126,25 +162,39 @@ html {
   }
 }
 
-/* Dark Glass morphism utilities */
+/* Glass morphism utilities */
 .glass {
   background: var(--gradient-glass-dark);
   backdrop-filter: blur(10px) saturate(180%);
   -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .glass {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(15px) saturate(180%);
   -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .glass-strong {
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .glass-dark {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(15px) saturate(180%);
   -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .glass-dark {
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 

@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { Menu, X, Download, Smartphone, Star, ArrowRight } from 'lucide-react';
+import { Menu, X, Download, Smartphone, Star, ArrowRight, Sun, Moon } from 'lucide-react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface ModernNavigationProps {
   className?: string;
@@ -12,6 +13,12 @@ interface ModernNavigationProps {
 export function ModernNavigation({ className = '' }: ModernNavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,6 +95,40 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
 
             {/* Desktop Download Buttons */}
             <div className="hidden lg:flex items-center space-x-3">
+              {/* Theme Toggle */}
+              {mounted && (
+                <motion.button
+                  onClick={toggleTheme}
+                  className="p-2 text-gray-300 hover:text-white transition-colors duration-200 relative group"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+                >
+                  <AnimatePresence mode="wait">
+                    {theme === 'light' ? (
+                      <motion.div
+                        key="moon"
+                        initial={{ rotate: -90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Moon className="w-5 h-5" />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="sun"
+                        initial={{ rotate: 90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Sun className="w-5 h-5" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
+              )}
               <motion.a
                 href="#"
                 className="px-4 py-2 text-sm font-semibold text-white bg-glass border border-white/20 rounded-xl hover:bg-white/10 transition-all duration-200 flex items-center space-x-2 group"
@@ -200,6 +241,45 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
 
                 {/* Mobile Navigation Links */}
                 <div className="flex-1 px-6 py-8 space-y-6">
+                  {/* Mobile Theme Toggle */}
+                  {mounted && (
+                    <motion.button
+                      onClick={toggleTheme}
+                      className="w-full flex items-center justify-between p-3 text-gray-300 hover:text-white bg-glass border border-white/20 rounded-xl transition-all duration-200"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span className="font-medium">
+                        {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+                      </span>
+                      <AnimatePresence mode="wait">
+                        {theme === 'light' ? (
+                          <motion.div
+                            key="moon-mobile"
+                            initial={{ rotate: -90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: 90, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Moon className="w-5 h-5" />
+                          </motion.div>
+                        ) : (
+                          <motion.div
+                            key="sun-mobile"
+                            initial={{ rotate: 90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: -90, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Sun className="w-5 h-5" />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.button>
+                  )}
                   {navItems.map((item, index) => (
                     <motion.a
                       key={item.href}

@@ -65,93 +65,86 @@ export function IPhoneFrame({ className = "" }: IPhoneFrameProps) {
             </div>
 
             {/* App Content */}
-            <div className="pt-16 pb-8 px-6 h-full flex flex-col" style={{ background: 'var(--gradient-hero)' }}>
+            <div className="pt-16 pb-8 px-6 h-full flex flex-col bg-gray-50">
               {/* App Header */}
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center space-x-3">
-                  <div 
-                    className="w-10 h-10 rounded-xl flex items-center justify-center"
-                    style={{ background: 'var(--gradient-green)' }}
-                  >
-                    <span className="text-black font-bold text-lg">T</span>
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center shadow-md">
+                    <span className="text-white font-bold text-lg">T</span>
                   </div>
-                  <span className="text-white font-bold text-xl">TeeRank</span>
+                  <span className="text-gray-900 font-bold text-xl">TeeRank</span>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                  <div className="w-4 h-4 rounded-full bg-white/40"></div>
+                <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+                  <div className="w-4 h-4 rounded-full bg-gray-400"></div>
                 </div>
               </div>
 
               {/* Golf Hole Card */}
               <div 
-                className="glass-strong rounded-2xl p-4 mb-6 relative overflow-hidden"
-                style={{ boxShadow: 'var(--shadow-medium)' }}
+                className="bg-white rounded-2xl p-4 mb-6 relative overflow-hidden shadow-lg"
               >
                 <div className="aspect-video rounded-xl overflow-hidden mb-4 relative">
                   <div 
-                    className="w-full h-full bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center"
+                    className="w-full h-full bg-gradient-to-br from-emerald-400 to-green-600 relative"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2334d399'/%3E%3Cstop offset='100%25' stop-color='%2310b981'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23g1)'/%3E%3Cellipse cx='350' cy='50' rx='20' ry='8' fill='%23059669'/%3E%3Cellipse cx='100' cy='200' rx='30' ry='12' fill='%23047857'/%3E%3Cpath d='M0,250 Q200,200 400,260 L400,300 L0,300 Z' fill='%23065f46'/%3E%3C/svg%3E")`,
+                      backgroundSize: 'cover'
+                    }}
                   >
-                    <span className="text-white font-semibold">Pebble Beach #7</span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    <div className="absolute bottom-2 left-2 text-white font-bold text-sm drop-shadow-lg">
+                      Pebble Beach #7
+                    </div>
                   </div>
                 </div>
-                <h3 className="text-white font-bold text-lg mb-2">Pebble Beach Golf Links</h3>
-                <p className="text-white/70 text-sm mb-3">Hole #7 • Par 3 • 106 yards</p>
+                <h3 className="text-gray-900 font-bold text-lg mb-2">Pebble Beach Golf Links</h3>
+                <p className="text-gray-600 text-sm mb-3">Hole #7 • Par 3 • 106 yards • Monterey, CA</p>
                 
-                {/* Rating Stars */}
-                <div className="flex items-center space-x-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <div 
-                      key={i}
-                      className="w-6 h-6 rounded-full flex items-center justify-center"
-                      style={{ 
-                        background: i < 4 ? 'var(--feature-gold)' : 'var(--gray-400)',
-                        color: i < 4 ? '#000' : 'var(--gray-600)'
-                      }}
-                    >
-                      ★
-                    </div>
-                  ))}
+                {/* Rating Display */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="w-5 h-5">
+                        <svg viewBox="0 0 20 20" fill={i < 4 ? "#FFD700" : "#E5E7EB"}>
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                      </div>
+                    ))}
+                    <span className="text-gray-600 text-sm ml-2">8.2/10</span>
+                  </div>
+                  <span className="text-gray-500 text-xs">124 ratings</span>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="flex space-x-2">
-                  <button 
-                    className="flex-1 py-2 px-4 rounded-xl font-semibold text-sm"
-                    style={{ 
-                      background: 'var(--gradient-green)',
-                      color: '#000'
-                    }}
-                  >
-                    Rate Hole
+                  <button className="flex-1 py-3 px-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl font-semibold text-sm shadow-md">
+                    Rate This Hole
                   </button>
-                  <button 
-                    className="flex-1 py-2 px-4 rounded-xl font-semibold text-sm text-white border"
-                    style={{ borderColor: 'var(--gray-400)' }}
-                  >
-                    Add to Bucket List
+                  <button className="flex-1 py-3 px-4 bg-gray-100 text-gray-700 rounded-xl font-semibold text-sm border border-gray-200">
+                    Add to List
                   </button>
                 </div>
               </div>
 
               {/* Bottom Navigation */}
               <div className="mt-auto">
-                <div className="glass-strong rounded-2xl p-3 flex justify-around items-center">
-                  {['Home', 'Discover', 'Lists', 'Profile'].map((tab, i) => (
-                    <div key={tab} className="flex flex-col items-center space-y-1">
-                      <div 
-                        className="w-6 h-6 rounded-lg flex items-center justify-center"
-                        style={{ 
-                          background: i === 0 ? 'var(--primary-green)' : 'transparent',
-                          color: i === 0 ? '#000' : 'var(--gray-400)'
-                        }}
-                      >
-                        <div className="w-4 h-4 bg-current rounded-sm"></div>
+                <div className="bg-white rounded-2xl p-3 flex justify-around items-center shadow-lg border border-gray-100">
+                  {[
+                    { name: 'Home', icon: '🏠' },
+                    { name: 'Discover', icon: '⭐' },
+                    { name: 'Lists', icon: '📋' },
+                    { name: 'Profile', icon: '👤' }
+                  ].map((tab, i) => (
+                    <div key={tab.name} className="flex flex-col items-center space-y-1">
+                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
+                        i === 1 ? 'bg-green-500' : 'bg-transparent'
+                      }`}>
+                        <span className="text-sm">{i === 1 ? '⭐' : tab.icon}</span>
                       </div>
-                      <span 
-                        className="text-xs font-medium"
-                        style={{ color: i === 0 ? 'var(--primary-green)' : 'var(--gray-400)' }}
-                      >
-                        {tab}
+                      <span className={`text-xs font-medium ${
+                        i === 1 ? 'text-green-500' : 'text-gray-400'
+                      }`}>
+                        {tab.name}
                       </span>
                     </div>
                   ))}

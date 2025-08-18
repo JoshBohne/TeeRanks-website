@@ -53,29 +53,29 @@ export default function Home() {
   const features = [
     {
       icon: Star,
-      title: "Rate & Review",
-      description: "Swipe through famous golf holes and courses and rate them 0-10.",
+      title: "Your Golf Memory Bank",
+      description: "Never forget a great hole. Rate it, save it, share it with the golf community.",
       colorVar: "--feature-gold",
       colorDarkVar: "--feature-gold-dark"
     },
     {
-      icon: BucketIcon,
-      title: "Bucket List",
-      description: "Track your must-play courses worldwide. Mark them as played and give them a rating as you progress through your golf journey.",
+      icon: MapPin,
+      title: "Discover Hidden Gems",
+      description: "Find your next favorite course based on real player ratings and honest reviews.",
       colorVar: "--feature-blue",
       colorDarkVar: "--feature-blue-dark"
     },
     {
       icon: Trophy,
-      title: "Rankings",
-      description: "Discover the worlds top-rated holes, courses, and lists based on community votes.",
+      title: "Track Your Golf Journey",
+      description: "See your progress, favorite courses, and playing stats all in one place.",
       colorVar: "--feature-orange",
       colorDarkVar: "--feature-orange-dark"
     },
     {
       icon: Users,
-      title: "Social",
-      description: "Follow friends, share your golf experiences, and see what others are playing.",
+      title: "Join the Conversation",
+      description: "Compare ratings, share tips, and connect with golfers who love the game as much as you do.",
       colorVar: "--feature-purple",
       colorDarkVar: "--feature-purple-dark"
     }
@@ -141,22 +141,17 @@ export default function Home() {
           }
         }
       `}</style>
-      <div className="min-h-screen relative overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
-          {/* Animated Gradient Orbs */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full mix-blend-multiply filter blur-xl animate-blob" />
-          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" />
-          <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" />
-          
-          {/* Grid Pattern */}
-          <div 
-            className="absolute inset-0 opacity-20" 
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 30h24v12h-24v-12zm0-12h24v12h-24v-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          />
-        </div>
+      <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
+        {/* Subtle Golf Pattern */}
+        <div 
+          className="absolute inset-0 opacity-30" 
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300ff7f' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3Ccircle cx='50' cy='50' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}
+        />
+        
+        {/* Green gradient accent */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary-500/10 via-transparent to-transparent rounded-full filter blur-3xl" />
 
         {/* Modern Navigation */}
         <ModernNavigation />
@@ -175,14 +170,14 @@ export default function Home() {
               >
                 {/* Floating Badge */}
                 <motion.div
-                  className="inline-flex items-center space-x-2 px-4 py-2 bg-glass-strong rounded-full text-sm text-primary-400 font-medium mb-6 border border-primary-500/20"
+                  className="inline-flex items-center space-x-2 px-4 py-2 bg-primary-500/10 rounded-full text-sm text-primary-500 font-medium mb-6 border border-primary-500/20"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.6 }}
                   whileHover={{ scale: 1.05, y: -2 }}
                 >
                   <Star className="w-4 h-4 fill-current" />
-                  <span>4.8 • 10K+ golfers joined</span>
+                  <span>50,000+ holes rated • 10,000+ active golfers</span>
                 </motion.div>
 
                 <motion.h1 
@@ -191,21 +186,21 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  <span className="text-white">Rate the world's</span>
+                  <span className="text-gray-900">Rate Every Hole</span>
                   <br />
                   <span className="text-gradient bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient-x filter drop-shadow-glow">
-                    greatest golf holes
+                    You Play
                   </span>
                 </motion.h1>
                 
                 <motion.p 
-                  className="text-lg sm:text-xl lg:text-2xl mb-8 leading-relaxed text-gray-300 max-w-2xl"
+                  className="text-lg sm:text-xl lg:text-2xl mb-8 leading-relaxed text-gray-600 max-w-2xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  The Letterboxd for golf. Discover and rate famous golf holes worldwide. 
-                  Build your bucket list, track your journey, and connect with fellow golf enthusiasts.
+                  Join thousands of golfers building the ultimate database of golf hole ratings. 
+                  Swipe, rate, and discover your next must-play course.
                 </motion.p>
                 
                 {/* Download Buttons */}
@@ -217,30 +212,30 @@ export default function Home() {
                 >
                   <motion.a 
                     href="#"
-                    className="group relative px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-black font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 shadow-glow-lg overflow-hidden btn-shimmer"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 shadow-glow-lg overflow-hidden btn-shimmer"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Download className="w-5 h-5 relative z-10" />
-                    <span className="relative z-10">Download for iOS</span>
+                    <Star className="w-5 h-5 relative z-10" />
+                    <span className="relative z-10">Start Rating Courses</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
                   </motion.a>
                   
                   <motion.a 
                     href="#"
-                    className="group px-8 py-4 bg-glass-strong border border-white/20 text-white font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 hover:bg-white/10 hover:border-primary-500/40 transition-all duration-300"
+                    className="group px-8 py-4 bg-white border border-gray-300 text-gray-900 font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 hover:bg-gray-50 hover:border-primary-500/40 transition-all duration-300"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Smartphone className="w-5 h-5" />
-                    <span>Get on Android</span>
+                    <Users className="w-5 h-5" />
+                    <span>Join the Community</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </motion.a>
                 </motion.div>
 
                 {/* Social Proof */}
                 <motion.div 
-                  className="flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-400"
+                  className="flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-500"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
@@ -248,16 +243,16 @@ export default function Home() {
                   <div className="flex items-center space-x-2">
                     <div className="flex -space-x-2">
                       {[1, 2, 3, 4].map((i) => (
-                        <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 border-2 border-gray-900 flex items-center justify-center text-xs font-bold text-black">
-                          {i}
+                        <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 border-2 border-white flex items-center justify-center text-xs font-bold text-white">
+                          G
                         </div>
                       ))}
                     </div>
-                    <span>Join 10K+ golfers</span>
+                    <span>Join 10,000+ golfers tracking every round</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                    <Star className="w-4 h-4 fill-primary-400 text-primary-400" />
-                    <span>4.8 rating</span>
+                    <Star className="w-4 h-4 fill-primary-500 text-primary-500" />
+                    <span>50,000+ holes rated</span>
                   </div>
                 </motion.div>
               </motion.div>
@@ -294,24 +289,17 @@ export default function Home() {
         </section>
 
         {/* Golf Course Gallery */}
-        <section id="gallery" className="py-20 relative bg-gradient-to-b from-gray-900/50 to-black/80 backdrop-blur-sm">
-          <div 
-            className="absolute inset-0 opacity-30" 
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm0 0h40v-40l-40 40z'/%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          />
-        
+        <section id="gallery" className="py-20 relative bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
             className="text-center mb-16"
             {...fadeInUp}
           >
-            <h2 className="text-5xl sm:text-6xl font-bold mb-6" style={{ color: 'var(--foreground)' }}>
-              Featuring the worlds most recognizable holes and courses
+            <h2 className="text-5xl sm:text-6xl font-bold mb-6 text-gray-900">
+              Famous holes you need to play
             </h2>
-            <p className="text-2xl font-light" style={{ color: 'var(--foreground-soft)' }}>
-              Rate and review the world&apos;s most famous golf holes
+            <p className="text-2xl font-light text-gray-600">
+              Rate and review the golf world's most iconic holes
             </p>
           </motion.div>
           
@@ -444,20 +432,19 @@ export default function Home() {
       </section>
 
         {/* Features Section */}
-        <section id="features" className="py-20 relative bg-black/40 backdrop-blur-sm"
+        <section id="features" className="py-20 relative bg-white"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-blue-500/5" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-20"
             {...fadeInUp}
           >
-            <h2 className="text-5xl sm:text-6xl font-bold mb-6" style={{ color: 'var(--foreground)' }}>
-              Everything You Need to Track Your Golf Journey
+            <h2 className="text-5xl sm:text-6xl font-bold mb-6 text-gray-900">
+              Everything you need to become a better golfer
             </h2>
-            <p className="text-2xl font-light max-w-4xl mx-auto leading-relaxed" style={{ color: 'var(--foreground-soft)' }}>
-              TeeRank combines the best of social rating platforms with golf-specific features 
-              to help you discover, rate, and track the world&apos;s greatest golf experiences.
+            <p className="text-2xl font-light max-w-4xl mx-auto leading-relaxed text-gray-600">
+              Join the golf community that's building the ultimate database of course ratings. 
+              Track your progress, discover new courses, and never forget a great round.
             </p>
           </motion.div>
           
@@ -472,34 +459,30 @@ export default function Home() {
               return (
                 <motion.div
                   key={feature.title}
-                  className="text-center p-8 glass-strong relative overflow-hidden group"
-                  style={{ 
-                    borderRadius: 'var(--radius-lg)',
-                    boxShadow: 'var(--shadow-medium)'
-                  }}
+                  className="text-center p-8 bg-white relative overflow-hidden group rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300"
                   variants={fadeInUp}
-                  whileHover={{ y: -8, scale: 1.02, boxShadow: `0 0 30px var(${feature.colorVar})40` }}
+                  whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                   {/* Background gradient */}
                   <div 
-                    className="absolute inset-0 opacity-5 group-hover:opacity-15 transition-opacity duration-300"
+                    className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-300"
                     style={{ 
                       background: `linear-gradient(135deg, var(${feature.colorVar}) 0%, transparent 100%)`
                     }}
                   />
                   
                   <div 
-                    className="w-32 h-32 rounded-full flex items-center justify-center mb-8 mx-auto relative"
+                    className="w-24 h-24 rounded-2xl flex items-center justify-center mb-6 mx-auto relative"
                     style={{ 
                       background: `linear-gradient(135deg, var(${feature.colorVar}) 0%, var(${feature.colorDarkVar}) 100%)`,
-                      boxShadow: `0 0 30px var(${feature.colorVar})40, 0 8px 16px rgba(0,0,0,0.15)`
+                      boxShadow: `0 4px 20px var(${feature.colorVar})30`
                     }}
                   >
-                    <feature.icon className="w-12 h-12 text-white" fill="currentColor" />
+                    <feature.icon className="w-8 h-8 text-white" fill="currentColor" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>{feature.title}</h3>
-                  <p className="leading-relaxed text-lg" style={{ color: 'var(--gray-600)' }}>{feature.description}</p>
+                  <h3 className="text-xl font-bold mb-4 text-gray-900">{feature.title}</h3>
+                  <p className="leading-relaxed text-gray-600">{feature.description}</p>
                 </motion.div>
               );
             })}
@@ -508,19 +491,13 @@ export default function Home() {
       </section>
 
         {/* Why TeeRank Section */}
-        <section id="why" className="py-20 relative bg-gradient-to-b from-black/60 to-gray-900/80 backdrop-blur-sm">
-          <div 
-            className="absolute inset-0 opacity-40" 
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          />
+        <section id="why" className="py-20 relative bg-gray-50">
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div {...fadeInUp}>
-              <h2 className="text-5xl sm:text-6xl font-bold mb-10" style={{ color: 'var(--foreground)' }}>
-                Why TeeRank?
+              <h2 className="text-5xl sm:text-6xl font-bold mb-10 text-gray-900">
+                Why golfers love TeeRank
               </h2>
               <div className="space-y-8">
                 <div className="flex items-start space-x-6">
@@ -534,8 +511,8 @@ export default function Home() {
                     <CheckCircle className="w-7 h-7 text-black" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-2xl mb-3" style={{ color: 'var(--foreground)' }}>Discover Hidden Gems</h3>
-                    <p className="text-xl leading-relaxed" style={{ color: 'var(--foreground-soft)' }}>Find amazing golf courses you never knew existed through community recommendations and expert insights.</p>
+                    <h3 className="font-bold text-2xl mb-3" style={{ color: 'var(--foreground)' }}>Discover Golf's Greatest</h3>
+                    <p className="text-xl leading-relaxed" style={{ color: 'var(--foreground-soft)' }}>Explore the world's most famous golf holes and courses through community ratings and expert insights.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-6">
@@ -549,8 +526,8 @@ export default function Home() {
                     <CheckCircle className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-2xl mb-3" style={{ color: 'var(--foreground)' }}>Track Your Journey</h3>
-                    <p className="text-xl leading-relaxed" style={{ color: 'var(--foreground-soft)' }}>Keep a digital record of every course you&apos;ve played and want to play, with detailed statistics and memories.</p>
+                    <h3 className="font-bold text-2xl mb-3" style={{ color: 'var(--foreground)' }}>Track Your Golf Journey</h3>
+                    <p className="text-xl leading-relaxed" style={{ color: 'var(--foreground-soft)' }}>Build your bucket list and keep a digital record of every course you've played and want to play, with detailed statistics and memories.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-6">
@@ -630,15 +607,14 @@ export default function Home() {
       </section>
 
         {/* Download Section */}
-        <section id="download" className="py-24 relative bg-gradient-to-t from-black to-gray-900/90">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-blue-500/10" />
+        <section id="download" className="py-24 relative bg-white border-t border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <motion.div {...fadeInUp}>
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8" style={{ color: 'var(--foreground)' }}>
-              Download TeeRank Today
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 text-gray-900">
+              Ready to rate your first hole?
             </h2>
-            <p className="text-2xl sm:text-3xl font-light max-w-4xl mx-auto leading-relaxed mb-12" style={{ color: 'var(--foreground-soft)' }}>
-              Start rating golf holes, building your bucket list, and connecting with golfers worldwide. Available now on iOS and Android.
+            <p className="text-2xl sm:text-3xl font-light max-w-4xl mx-auto leading-relaxed mb-12 text-gray-600">
+              Join thousands of golfers who are building the ultimate course rating database. Get early access and help shape the future of golf.
             </p>
           </motion.div>
 
