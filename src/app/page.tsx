@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { BucketIcon } from "../components/BucketIcon";
 import { IPhoneFrame } from "../components/IPhoneFrame";
+import { ModernNavigation } from "../components/ModernNavigation";
 
 // Import Swiper React components and modules
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -140,130 +141,166 @@ export default function Home() {
           }
         }
       `}</style>
-      <div className="min-h-screen" style={{ background: 'var(--gradient-hero)' }}>
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full glass-dark border-b border-white/10 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center space-x-4">
-              <Image
-                src="/TeeRankLogo2.png"
-                alt="TeeRank Logo"
-                width={48}
-                height={48}
-                className="rounded-xl"
-                style={{ boxShadow: 'var(--shadow-soft)' }}
-              />
-              <span className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>TeeRank</span>
-            </div>
-            <a 
-              href="#download" 
-              className="btn-premium text-black px-6 py-3 font-semibold text-lg"
-            >
-              Download App
-            </a>
-          </div>
+      <div className="min-h-screen relative overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+          {/* Animated Gradient Orbs */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full mix-blend-multiply filter blur-xl animate-blob" />
+          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" />
+          <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" />
+          
+          {/* Grid Pattern */}
+          <div 
+            className="absolute inset-0 opacity-20" 
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 30h24v12h-24v-12zm0-12h24v12h-24v-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            }}
+          />
         </div>
-      </nav>
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative">
-        <div className="max-w-7xl mx-auto relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            
-            {/* Left Column - Text Content */}
-            <motion.div 
-              className="text-center lg:text-left"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <motion.h1 
-                className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight"
-                style={{ color: 'var(--foreground)' }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-              >
-                Welcome to
-                <span className="block" style={{ 
-                  background: 'var(--gradient-green)', 
-                  WebkitBackgroundClip: 'text', 
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  filter: 'drop-shadow(0 0 10px var(--primary-green-glow))'
-                }}>TeeRank</span>
-              </motion.h1>
+        {/* Modern Navigation */}
+        <ModernNavigation />
+
+        {/* Hero Section */}
+        <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-7xl mx-auto relative">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
               
-              <motion.p 
-                className="text-xl sm:text-2xl mb-8 leading-relaxed font-light"
-                style={{ color: 'var(--foreground-soft)' }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
+              {/* Left Column - Text Content */}
+              <motion.div 
+                className="text-center lg:text-left order-2 lg:order-1"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
               >
-                The Letterboxd for golf. Discover and rate famous golf holes and courses worldwide. 
-                Build your bucket list, track your journey, and connect with fellow golf enthusiasts.
-              </motion.p>
-              
-              {/* Download Buttons */}
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-              >
-                <a 
-                  href="#"
-                  className="btn-premium text-black px-8 py-4 font-semibold text-lg flex items-center justify-center space-x-3 group"
+                {/* Floating Badge */}
+                <motion.div
+                  className="inline-flex items-center space-x-2 px-4 py-2 bg-glass-strong rounded-full text-sm text-primary-400 font-medium mb-6 border border-primary-500/20"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1, duration: 0.6 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                 >
-                  <Download className="w-6 h-6" />
-                  <span>Download for iOS</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                  <Star className="w-4 h-4 fill-current" />
+                  <span>4.8 • 10K+ golfers joined</span>
+                </motion.div>
+
+                <motion.h1 
+                  className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-tight"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                >
+                  <span className="text-white">Rate the world's</span>
+                  <br />
+                  <span className="text-gradient bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient-x filter drop-shadow-glow">
+                    greatest golf holes
+                  </span>
+                </motion.h1>
                 
-                <a 
-                  href="#"
-                  className="glass-strong px-8 py-4 font-semibold text-lg flex items-center justify-center space-x-3 group transition-all duration-300 hover:bg-white/10"
-                  style={{ 
-                    borderRadius: 'var(--radius-md)',
-                    color: 'var(--foreground)',
-                    border: '2px solid var(--primary-green)'
-                  }}
+                <motion.p 
+                  className="text-lg sm:text-xl lg:text-2xl mb-8 leading-relaxed text-gray-300 max-w-2xl"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  <Smartphone className="w-6 h-6" />
-                  <span>Get on Android</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
+                  The Letterboxd for golf. Discover and rate famous golf holes worldwide. 
+                  Build your bucket list, track your journey, and connect with fellow golf enthusiasts.
+                </motion.p>
+                
+                {/* Download Buttons */}
+                <motion.div
+                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                >
+                  <motion.a 
+                    href="#"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-black font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 shadow-glow-lg overflow-hidden btn-shimmer"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Download className="w-5 h-5 relative z-10" />
+                    <span className="relative z-10">Download for iOS</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
+                  </motion.a>
+                  
+                  <motion.a 
+                    href="#"
+                    className="group px-8 py-4 bg-glass-strong border border-white/20 text-white font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 hover:bg-white/10 hover:border-primary-500/40 transition-all duration-300"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Smartphone className="w-5 h-5" />
+                    <span>Get on Android</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </motion.a>
+                </motion.div>
+
+                {/* Social Proof */}
+                <motion.div 
+                  className="flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-400"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                >
+                  <div className="flex items-center space-x-2">
+                    <div className="flex -space-x-2">
+                      {[1, 2, 3, 4].map((i) => (
+                        <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 border-2 border-gray-900 flex items-center justify-center text-xs font-bold text-black">
+                          {i}
+                        </div>
+                      ))}
+                    </div>
+                    <span>Join 10K+ golfers</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <Star className="w-4 h-4 fill-primary-400 text-primary-400" />
+                    <span>4.8 rating</span>
+                  </div>
+                </motion.div>
               </motion.div>
 
-              <motion.p 
-                className="text-sm font-medium opacity-75"
-                style={{ color: 'var(--primary-green)' }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
+              {/* Right Column - iPhone Mockup */}
+              <motion.div 
+                className="flex justify-center lg:justify-end order-1 lg:order-2 relative"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
               >
-                ⛳ Available now on iOS and Android
-              </motion.p>
-            </motion.div>
+                {/* Floating elements around iPhone */}
+                <motion.div
+                  className="absolute -top-4 -left-4 w-16 h-16 bg-primary-500/20 rounded-2xl backdrop-blur-sm border border-primary-500/30 flex items-center justify-center"
+                  animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Star className="w-8 h-8 text-primary-400 fill-current" />
+                </motion.div>
+                
+                <motion.div
+                  className="absolute -bottom-4 -right-4 w-20 h-12 bg-glass-strong rounded-xl backdrop-blur-sm border border-white/20 flex items-center justify-center"
+                  animate={{ y: [0, 10, 0], rotate: [0, -3, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
+                  <span className="text-primary-400 font-bold text-sm">4.8★</span>
+                </motion.div>
 
-            {/* Right Column - iPhone Mockup */}
-            <motion.div 
-              className="flex justify-center lg:justify-end"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <IPhoneFrame className="scale-90 lg:scale-100" />
-            </motion.div>
+                <IPhoneFrame className="scale-75 sm:scale-90 lg:scale-100 relative z-10" />
+              </motion.div>
 
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Golf Course Gallery */}
-      <section className="py-20 relative" style={{ background: 'var(--gradient-dark)' }}>
+        {/* Golf Course Gallery */}
+        <section id="gallery" className="py-20 relative bg-gradient-to-b from-gray-900/50 to-black/80 backdrop-blur-sm">
+          <div 
+            className="absolute inset-0 opacity-30" 
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm0 0h40v-40l-40 40z'/%3E%3C/g%3E%3C/svg%3E")`
+            }}
+          />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
@@ -406,8 +443,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 relative" style={{ background: 'var(--background)' }}>
+        {/* Features Section */}
+        <section id="features" className="py-20 relative bg-black/40 backdrop-blur-sm"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-blue-500/5" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-20"
@@ -468,8 +507,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why TeeRank Section */}
-      <section className="py-20 relative" style={{ background: 'var(--gradient-surface)' }}>
+        {/* Why TeeRank Section */}
+        <section id="why" className="py-20 relative bg-gradient-to-b from-black/60 to-gray-900/80 backdrop-blur-sm">
+          <div 
+            className="absolute inset-0 opacity-40" 
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            }}
+          />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -584,8 +629,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Download Section */}
-      <section id="download" className="py-24 relative" style={{ background: 'var(--background)' }}>
+        {/* Download Section */}
+        <section id="download" className="py-24 relative bg-gradient-to-t from-black to-gray-900/90">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-blue-500/10" />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <motion.div {...fadeInUp}>
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8" style={{ color: 'var(--foreground)' }}>
@@ -669,8 +715,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-16 relative overflow-hidden" style={{ background: 'var(--gradient-surface)' }}>
+        {/* Footer */}
+        <footer className="py-16 relative overflow-hidden bg-black border-t border-white/10">
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
             <div className="flex items-center space-x-4">
@@ -745,7 +792,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </footer>
+        </footer>
       </div>
     </>
   );

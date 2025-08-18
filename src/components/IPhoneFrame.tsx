@@ -17,7 +17,7 @@ export function IPhoneFrame({ className = "" }: IPhoneFrameProps) {
     >
       {/* iPhone Device Frame */}
       <motion.div
-        className="relative w-80 h-[640px] mx-auto"
+        className="relative w-72 h-[580px] sm:w-80 sm:h-[640px] lg:w-80 lg:h-[640px] mx-auto"
         animate={{ 
           y: [0, -10, 0],
           rotateY: [0, 2, 0]
