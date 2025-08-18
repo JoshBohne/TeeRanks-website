@@ -3,9 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { 
   Star, 
   MapPin, 
@@ -14,6 +11,8 @@ import {
   Mail, 
   ArrowRight, 
   CheckCircle,
+  Download,
+  Smartphone,
   Instagram,
   X,
   Facebook,
@@ -21,6 +20,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { BucketIcon } from "../components/BucketIcon";
+import { IPhoneFrame } from "../components/IPhoneFrame";
 
 // Import Swiper React components and modules
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -33,47 +33,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 
-const waitlistSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-  firstName: z.string().min(2, "First name must be at least 2 characters"),
-});
-
-type WaitlistForm = z.infer<typeof waitlistSchema>;
-
 export default function Home() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentHoleIndex, setCurrentHoleIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
-
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<WaitlistForm>({
-    resolver: zodResolver(waitlistSchema),
-  });
-
-  const onSubmit = async (data: WaitlistForm) => {
-    setIsSubmitting(true);
-    try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        setIsSubmitted(true);
-        reset();
-      } else {
-        throw new Error('Failed to submit');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      // You could add error state handling here
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const nextHole = () => {
     swiperRef.current?.slideNext();
@@ -195,10 +157,10 @@ export default function Home() {
               <span className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>TeeRank</span>
             </div>
             <a 
-              href="#waitlist" 
+              href="#download" 
               className="btn-premium text-black px-6 py-3 font-semibold text-lg"
             >
-              Join Waitlist
+              Download App
             </a>
           </div>
         </div>
@@ -206,60 +168,97 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 relative">
-        
         <div className="max-w-7xl mx-auto relative">
-          <motion.div 
-            className="text-center max-w-5xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h1 
-              className="text-6xl sm:text-7xl lg:text-8xl font-black mb-8 leading-tight"
-              style={{ color: 'var(--foreground)' }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              Welcome to
-              <span className="block" style={{ 
-                background: 'var(--gradient-green)', 
-                WebkitBackgroundClip: 'text', 
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                filter: 'drop-shadow(0 0 10px var(--primary-green-glow))'
-              }}>TeeRank</span>
-            </motion.h1>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
-            <motion.p 
-              className="text-2xl sm:text-3xl mb-12 leading-relaxed font-light"
-              style={{ color: 'var(--foreground-soft)' }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
+            {/* Left Column - Text Content */}
+            <motion.div 
+              className="text-center lg:text-left"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              Discover and rate famous golf holes and courses worldwide. 
-              <br className="hidden sm:block" />
-              Build your bucket list, track your journey, and connect with fellow golf enthusiasts.
-            </motion.p>
-            
-            <motion.div
-              className="flex justify-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-            >
-              <a 
-                href="#waitlist"
-                className="btn-premium text-black px-12 py-6 font-semibold text-xl flex items-center justify-center space-x-3 group"
+              <motion.h1 
+                className="text-5xl sm:text-6xl lg:text-7xl font-black mb-8 leading-tight"
+                style={{ color: 'var(--foreground)' }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
               >
-                <Mail className="w-6 h-6" />
-                <span>Join the Waitlist</span>
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-              </a>
+                Welcome to
+                <span className="block" style={{ 
+                  background: 'var(--gradient-green)', 
+                  WebkitBackgroundClip: 'text', 
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  filter: 'drop-shadow(0 0 10px var(--primary-green-glow))'
+                }}>TeeRank</span>
+              </motion.h1>
+              
+              <motion.p 
+                className="text-xl sm:text-2xl mb-8 leading-relaxed font-light"
+                style={{ color: 'var(--foreground-soft)' }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+              >
+                The Letterboxd for golf. Discover and rate famous golf holes and courses worldwide. 
+                Build your bucket list, track your journey, and connect with fellow golf enthusiasts.
+              </motion.p>
+              
+              {/* Download Buttons */}
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+              >
+                <a 
+                  href="#"
+                  className="btn-premium text-black px-8 py-4 font-semibold text-lg flex items-center justify-center space-x-3 group"
+                >
+                  <Download className="w-6 h-6" />
+                  <span>Download for iOS</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+                
+                <a 
+                  href="#"
+                  className="glass-strong px-8 py-4 font-semibold text-lg flex items-center justify-center space-x-3 group transition-all duration-300 hover:bg-white/10"
+                  style={{ 
+                    borderRadius: 'var(--radius-md)',
+                    color: 'var(--foreground)',
+                    border: '2px solid var(--primary-green)'
+                  }}
+                >
+                  <Smartphone className="w-6 h-6" />
+                  <span>Get on Android</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </motion.div>
+
+              <motion.p 
+                className="text-sm font-medium opacity-75"
+                style={{ color: 'var(--primary-green)' }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+              >
+                ⛳ Available now on iOS and Android
+              </motion.p>
             </motion.div>
 
-          </motion.div>
+            {/* Right Column - iPhone Mockup */}
+            <motion.div 
+              className="flex justify-center lg:justify-end"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <IPhoneFrame className="scale-90 lg:scale-100" />
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
@@ -585,135 +584,88 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Waitlist Section */}
-      <section id="waitlist" className="py-24 relative" style={{ background: 'var(--background)' }}>
-        
+      {/* Download Section */}
+      <section id="download" className="py-24 relative" style={{ background: 'var(--background)' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <motion.div {...fadeInUp}>
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8" style={{ color: 'var(--foreground)' }}>
-              Be the First to Experience TeeRank
+              Download TeeRank Today
             </h2>
             <p className="text-2xl sm:text-3xl font-light max-w-4xl mx-auto leading-relaxed mb-12" style={{ color: 'var(--foreground-soft)' }}>
-              Join our waitlist and get early access when we launch. Plus, get exclusive updates on new features and golf content.
+              Start rating golf holes, building your bucket list, and connecting with golfers worldwide. Available now on iOS and Android.
             </p>
           </motion.div>
 
-          {isSubmitted ? (
-            <motion.div 
-              className="glass-strong p-12 max-w-lg mx-auto relative overflow-hidden"
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* iOS Download Button */}
+            <a 
+              href="#"
+              className="flex items-center space-x-4 glass-strong p-6 rounded-2xl transition-all duration-300 hover:scale-105 group"
               style={{ 
-                borderRadius: 'var(--radius-xl)',
-                boxShadow: 'var(--shadow-green-strong)'
+                boxShadow: 'var(--shadow-medium)',
+                minWidth: '200px'
               }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
             >
-              {/* Success background glow */}
-              <div className="absolute inset-0 opacity-10" style={{ background: 'var(--gradient-green)' }}></div>
-              
-              <div className="relative">
-                <div 
-                  className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
-                  style={{ 
-                    background: 'var(--gradient-green)',
-                    boxShadow: 'var(--shadow-green)'
-                  }}
-                >
-                  <CheckCircle className="w-12 h-12 text-black" />
-                </div>
-                <h3 className="text-3xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>You&apos;re on the list!</h3>
-                <p className="text-xl" style={{ color: 'var(--foreground-soft)' }}>We&apos;ll notify you as soon as TeeRank is available.</p>
+              <div 
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
+                style={{ background: 'var(--gradient-green)' }}
+              >
+                <Download className="w-6 h-6 text-black" />
               </div>
-            </motion.div>
-          ) : (
-            <motion.form 
-              onSubmit={handleSubmit(onSubmit)}
-              className="glass-strong p-12 max-w-lg mx-auto relative"
+              <div className="text-left">
+                <p className="text-sm font-medium opacity-75" style={{ color: 'var(--foreground-soft)' }}>
+                  Download on the
+                </p>
+                <p className="text-lg font-bold" style={{ color: 'var(--foreground)' }}>
+                  App Store
+                </p>
+              </div>
+              <ArrowRight className="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ color: 'var(--primary-green)' }} />
+            </a>
+
+            {/* Android Download Button */}
+            <a 
+              href="#"
+              className="flex items-center space-x-4 glass-strong p-6 rounded-2xl transition-all duration-300 hover:scale-105 group"
               style={{ 
-                borderRadius: 'var(--radius-xl)',
-                boxShadow: 'var(--shadow-large)'
+                boxShadow: 'var(--shadow-medium)',
+                minWidth: '200px'
               }}
-              {...fadeInUp}
             >
-              
-              <div className="space-y-6 relative">
-                <div>
-                  <input
-                    {...register("firstName")}
-                    type="text"
-                    placeholder="First Name"
-                    className="w-full px-6 py-4 text-lg font-medium outline-none transition-all duration-300"
-                    style={{
-                      background: 'var(--surface-soft)',
-                      color: 'var(--foreground)',
-                      border: `2px solid var(--gray-200)`,
-                      borderRadius: 'var(--radius-md)',
-                      boxShadow: 'var(--shadow-soft)'
-                    }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--primary-green)';
-                      e.target.style.boxShadow = 'var(--shadow-green)';
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'var(--gray-200)';
-                      e.target.style.boxShadow = 'var(--shadow-soft)';
-                    }}
-                  />
-                  {errors.firstName && (
-                    <p className="text-red-500 text-base mt-2 font-medium">{errors.firstName.message}</p>
-                  )}
-                </div>
-                
-                <div>
-                  <input
-                    {...register("email")}
-                    type="email"
-                    placeholder="Email Address"
-                    className="w-full px-6 py-4 text-lg font-medium outline-none transition-all duration-300"
-                    style={{
-                      background: 'var(--surface-soft)',
-                      color: 'var(--foreground)',
-                      border: `2px solid var(--gray-200)`,
-                      borderRadius: 'var(--radius-md)',
-                      boxShadow: 'var(--shadow-soft)'
-                    }}
-                    onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--primary-green)';
-                      e.target.style.boxShadow = 'var(--shadow-green)';
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = 'var(--gray-200)';
-                      e.target.style.boxShadow = 'var(--shadow-soft)';
-                    }}
-                  />
-                  {errors.email && (
-                    <p className="text-red-500 text-base mt-2 font-medium">{errors.email.message}</p>
-                  )}
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full btn-premium text-black py-5 font-bold text-xl flex items-center justify-center space-x-3 group"
-                >
-                  {isSubmitting ? (
-                    <div className="w-6 h-6 border-3 border-black border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    <>
-                      <Mail className="w-6 h-6" />
-                      <span>Join Waitlist</span>
-                      <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                    </>
-                  )}
-                </button>
+              <div 
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
+                style={{ background: 'var(--gradient-green)' }}
+              >
+                <Smartphone className="w-6 h-6 text-black" />
               </div>
-              
-              <p className="text-base mt-6 font-medium" style={{ color: 'var(--primary-green)' }}>
-                ⛳ We&apos;ll never spam you. Unsubscribe at any time.
-              </p>
-            </motion.form>
-          )}
+              <div className="text-left">
+                <p className="text-sm font-medium opacity-75" style={{ color: 'var(--foreground-soft)' }}>
+                  Get it on
+                </p>
+                <p className="text-lg font-bold" style={{ color: 'var(--foreground)' }}>
+                  Google Play
+                </p>
+              </div>
+              <ArrowRight className="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ color: 'var(--primary-green)' }} />
+            </a>
+          </motion.div>
+
+          <motion.p 
+            className="text-lg font-medium mt-8"
+            style={{ color: 'var(--primary-green)' }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            ⛳ Join thousands of golfers already using TeeRank
+          </motion.p>
         </div>
       </section>
 
