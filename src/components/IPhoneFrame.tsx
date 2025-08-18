@@ -55,7 +55,7 @@ export function IPhoneFrame({ className = "" }: IPhoneFrameProps) {
             />
             
             {/* Status Bar */}
-            <div className="absolute top-4 left-8 right-8 flex justify-between items-center text-white text-sm font-semibold z-10">
+            <div className="absolute top-4 left-8 right-8 flex justify-between items-center text-gray-900 dark:text-white text-sm font-semibold z-10">
               <span>9:41</span>
               <div className="flex items-center space-x-1">
                 <div className="w-4 h-2 border border-white rounded-sm">
@@ -65,23 +65,23 @@ export function IPhoneFrame({ className = "" }: IPhoneFrameProps) {
             </div>
 
             {/* App Content */}
-            <div className="pt-16 pb-8 px-6 h-full flex flex-col bg-gray-50">
+            <div className="pt-16 pb-8 px-6 h-full flex flex-col bg-gray-50 dark:bg-gray-800">
               {/* App Header */}
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center shadow-md">
                     <span className="text-white font-bold text-lg">T</span>
                   </div>
-                  <span className="text-gray-900 font-bold text-xl">TeeRank</span>
+                  <span className="text-gray-900 dark:text-white font-bold text-xl">TeeRank</span>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
-                  <div className="w-4 h-4 rounded-full bg-gray-400"></div>
+                <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center">
+                  <div className="w-4 h-4 rounded-full bg-gray-400 dark:bg-gray-300"></div>
                 </div>
               </div>
 
               {/* Golf Hole Card */}
               <div 
-                className="bg-white rounded-2xl p-4 mb-6 relative overflow-hidden shadow-lg"
+                className="bg-white dark:bg-gray-700 rounded-2xl p-4 mb-6 relative overflow-hidden shadow-lg"
               >
                 <div className="aspect-video rounded-xl overflow-hidden mb-4 relative">
                   <div 
@@ -97,8 +97,8 @@ export function IPhoneFrame({ className = "" }: IPhoneFrameProps) {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-gray-900 font-bold text-lg mb-2">Pebble Beach Golf Links</h3>
-                <p className="text-gray-600 text-sm mb-3">Hole #7 • Par 3 • 106 yards • Monterey, CA</p>
+                <h3 className="text-gray-900 dark:text-white font-bold text-lg mb-2">Pebble Beach Golf Links</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">Hole #7 • Par 3 • 106 yards • Monterey, CA</p>
                 
                 {/* Rating Display */}
                 <div className="flex items-center justify-between mb-4">
@@ -110,9 +110,9 @@ export function IPhoneFrame({ className = "" }: IPhoneFrameProps) {
                         </svg>
                       </div>
                     ))}
-                    <span className="text-gray-600 text-sm ml-2">8.2/10</span>
+                    <span className="text-gray-600 dark:text-gray-300 text-sm ml-2">8.2/10</span>
                   </div>
-                  <span className="text-gray-500 text-xs">124 ratings</span>
+                  <span className="text-gray-500 dark:text-gray-400 text-xs">124 ratings</span>
                 </div>
 
                 {/* Action Buttons */}
@@ -120,7 +120,7 @@ export function IPhoneFrame({ className = "" }: IPhoneFrameProps) {
                   <button className="flex-1 py-3 px-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl font-semibold text-sm shadow-md">
                     Rate This Hole
                   </button>
-                  <button className="flex-1 py-3 px-4 bg-gray-100 text-gray-700 rounded-xl font-semibold text-sm border border-gray-200">
+                  <button className="flex-1 py-3 px-4 bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-xl font-semibold text-sm border border-gray-200 dark:border-gray-500">
                     Add to List
                   </button>
                 </div>
@@ -128,7 +128,7 @@ export function IPhoneFrame({ className = "" }: IPhoneFrameProps) {
 
               {/* Bottom Navigation */}
               <div className="mt-auto">
-                <div className="bg-white rounded-2xl p-3 flex justify-around items-center shadow-lg border border-gray-100">
+                <div className="bg-white dark:bg-gray-700 rounded-2xl p-3 flex justify-around items-center shadow-lg border border-gray-100 dark:border-gray-600">
                   {[
                     { name: 'Home', icon: '🏠' },
                     { name: 'Discover', icon: '⭐' },
@@ -142,7 +142,7 @@ export function IPhoneFrame({ className = "" }: IPhoneFrameProps) {
                         <span className="text-sm">{i === 1 ? '⭐' : tab.icon}</span>
                       </div>
                       <span className={`text-xs font-medium ${
-                        i === 1 ? 'text-green-500' : 'text-gray-400'
+                        i === 1 ? 'text-green-500' : 'text-gray-400 dark:text-gray-300'
                       }`}>
                         {tab.name}
                       </span>

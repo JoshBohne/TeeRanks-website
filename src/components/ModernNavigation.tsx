@@ -47,7 +47,7 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
         animate={{ y: 0 }}
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-glass-dark backdrop-blur-xl border-b border-white/10 shadow-soft-lg' 
+            ? 'bg-white/90 dark:bg-glass-dark backdrop-blur-xl border-b border-gray-200 dark:border-white/10 shadow-soft-lg' 
             : 'bg-transparent'
         } ${className}`}
       >
@@ -70,7 +70,7 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
                 />
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary-400/20 to-primary-600/20 animate-pulse-glow" />
               </div>
-              <span className="text-xl lg:text-2xl font-bold text-white">
+              <span className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">
                 TeeRank
               </span>
             </motion.div>
@@ -81,7 +81,7 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
                 <motion.a
                   key={item.href}
                   href={item.href}
-                  className="text-gray-300 hover:text-white font-medium transition-colors duration-200 relative group"
+                  className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white font-medium transition-colors duration-200 relative group"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -99,7 +99,7 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
               {mounted && (
                 <motion.button
                   onClick={toggleTheme}
-                  className="p-2 text-gray-300 hover:text-white transition-colors duration-200 relative group"
+                  className="p-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 relative group"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
@@ -131,7 +131,7 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
               )}
               <motion.a
                 href="#"
-                className="px-4 py-2 text-sm font-semibold text-white bg-glass border border-white/20 rounded-xl hover:bg-white/10 transition-all duration-200 flex items-center space-x-2 group"
+                className="px-4 py-2 text-sm font-semibold text-gray-700 dark:text-white bg-gray-100 dark:bg-glass border border-gray-300 dark:border-white/20 rounded-xl hover:bg-gray-200 dark:hover:bg-white/10 transition-all duration-200 flex items-center space-x-2 group"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -155,7 +155,7 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
             {/* Mobile Menu Button */}
             <motion.button
               onClick={toggleMobileMenu}
-              className="lg:hidden p-2 text-white hover:text-primary-400 transition-colors duration-200"
+              className="lg:hidden p-2 text-gray-900 dark:text-white hover:text-primary-400 transition-colors duration-200"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -214,11 +214,11 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 w-80 h-full bg-glass-dark backdrop-blur-xl border-l border-white/10 z-50 lg:hidden"
+              className="fixed top-0 right-0 w-80 h-full bg-white dark:bg-glass-dark backdrop-blur-xl border-l border-gray-200 dark:border-white/10 z-50 lg:hidden"
             >
               <div className="flex flex-col h-full">
                 {/* Mobile Header */}
-                <div className="flex items-center justify-between p-6 border-b border-white/10">
+                <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-white/10">
                   <div className="flex items-center space-x-3">
                     <Image
                       src="/TeeRankLogo2.png"
@@ -227,11 +227,11 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
                       height={32}
                       className="rounded-lg"
                     />
-                    <span className="text-lg font-bold text-white">TeeRank</span>
+                    <span className="text-lg font-bold text-gray-900 dark:text-white">TeeRank</span>
                   </div>
                   <motion.button
                     onClick={toggleMobileMenu}
-                    className="p-2 text-white hover:text-primary-400 transition-colors"
+                    className="p-2 text-gray-900 dark:text-white hover:text-primary-400 transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -245,7 +245,7 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
                   {mounted && (
                     <motion.button
                       onClick={toggleTheme}
-                      className="w-full flex items-center justify-between p-3 text-gray-300 hover:text-white bg-glass border border-white/20 rounded-xl transition-all duration-200"
+                      className="w-full flex items-center justify-between p-3 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white bg-gray-100 dark:bg-glass border border-gray-300 dark:border-white/20 rounded-xl transition-all duration-200"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 }}
@@ -285,7 +285,7 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
                       key={item.href}
                       href={item.href}
                       onClick={toggleMobileMenu}
-                      className="block text-lg font-medium text-gray-300 hover:text-white transition-colors duration-200"
+                      className="block text-lg font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
@@ -297,10 +297,10 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
                 </div>
 
                 {/* Mobile Download Buttons */}
-                <div className="p-6 space-y-3 border-t border-white/10">
+                <div className="p-6 space-y-3 border-t border-gray-200 dark:border-white/10">
                   <motion.a
                     href="#"
-                    className="w-full px-6 py-3 text-sm font-semibold text-white bg-glass border border-white/20 rounded-xl hover:bg-white/10 transition-all duration-200 flex items-center justify-center space-x-2 group"
+                    className="w-full px-6 py-3 text-sm font-semibold text-gray-700 dark:text-white bg-gray-100 dark:bg-glass border border-gray-300 dark:border-white/20 rounded-xl hover:bg-gray-200 dark:hover:bg-white/10 transition-all duration-200 flex items-center justify-center space-x-2 group"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
@@ -328,7 +328,7 @@ export function ModernNavigation({ className = '' }: ModernNavigationProps) {
 
                   {/* App Info */}
                   <motion.div
-                    className="flex items-center justify-center space-x-2 text-xs text-gray-400 pt-2"
+                    className="flex items-center justify-center space-x-2 text-xs text-gray-500 dark:text-gray-400 pt-2"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6 }}

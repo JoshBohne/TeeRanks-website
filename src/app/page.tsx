@@ -141,7 +141,7 @@ export default function Home() {
           }
         }
       `}</style>
-      <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
+      <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-black">
         {/* Subtle Golf Pattern */}
         <div 
           className="absolute inset-0 opacity-30" 
@@ -186,7 +186,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  <span className="text-gray-900">Rate Every Hole</span>
+                  <span className="text-gray-900 dark:text-white">Rate Every Hole</span>
                   <br />
                   <span className="text-gradient bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient-x filter drop-shadow-glow">
                     You Play
@@ -194,7 +194,7 @@ export default function Home() {
                 </motion.h1>
                 
                 <motion.p 
-                  className="text-lg sm:text-xl lg:text-2xl mb-8 leading-relaxed text-gray-600 max-w-2xl"
+                  className="text-lg sm:text-xl lg:text-2xl mb-8 leading-relaxed text-gray-600 dark:text-gray-300 max-w-2xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
@@ -223,7 +223,7 @@ export default function Home() {
                   
                   <motion.a 
                     href="#"
-                    className="group px-8 py-4 bg-white border border-gray-300 text-gray-900 font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 hover:bg-gray-50 hover:border-primary-500/40 transition-all duration-300"
+                    className="group px-8 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-primary-500/40 transition-all duration-300"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -235,7 +235,7 @@ export default function Home() {
 
                 {/* Social Proof */}
                 <motion.div 
-                  className="flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-500"
+                  className="flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-500 dark:text-gray-400"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
@@ -289,16 +289,16 @@ export default function Home() {
         </section>
 
         {/* Golf Course Gallery */}
-        <section id="gallery" className="py-20 relative bg-gray-50">
+        <section id="gallery" className="py-20 relative bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div 
             className="text-center mb-16"
             {...fadeInUp}
           >
-            <h2 className="text-5xl sm:text-6xl font-bold mb-6 text-gray-900">
+            <h2 className="text-5xl sm:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
               Famous holes you need to play
             </h2>
-            <p className="text-2xl font-light text-gray-600">
+            <p className="text-2xl font-light text-gray-600 dark:text-gray-300">
               Rate and review the golf world's most iconic holes
             </p>
           </motion.div>
@@ -432,17 +432,17 @@ export default function Home() {
       </section>
 
         {/* Features Section */}
-        <section id="features" className="py-20 relative bg-white"
+        <section id="features" className="py-20 relative bg-white dark:bg-black"
         >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-20"
             {...fadeInUp}
           >
-            <h2 className="text-5xl sm:text-6xl font-bold mb-6 text-gray-900">
+            <h2 className="text-5xl sm:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
               Everything you need to become a better golfer
             </h2>
-            <p className="text-2xl font-light max-w-4xl mx-auto leading-relaxed text-gray-600">
+            <p className="text-2xl font-light max-w-4xl mx-auto leading-relaxed text-gray-600 dark:text-gray-300">
               Join the golf community that's building the ultimate database of course ratings. 
               Track your progress, discover new courses, and never forget a great round.
             </p>
@@ -459,7 +459,7 @@ export default function Home() {
               return (
                 <motion.div
                   key={feature.title}
-                  className="text-center p-8 bg-white relative overflow-hidden group rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="text-center p-8 bg-white dark:bg-gray-800 relative overflow-hidden group rounded-2xl border border-gray-100 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300"
                   variants={fadeInUp}
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
@@ -481,8 +481,8 @@ export default function Home() {
                   >
                     <feature.icon className="w-8 h-8 text-white" fill="currentColor" />
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-gray-900">{feature.title}</h3>
-                  <p className="leading-relaxed text-gray-600">{feature.description}</p>
+                  <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">{feature.title}</h3>
+                  <p className="leading-relaxed text-gray-600 dark:text-gray-300">{feature.description}</p>
                 </motion.div>
               );
             })}
@@ -491,7 +491,7 @@ export default function Home() {
       </section>
 
         {/* Why TeeRank Section */}
-        <section id="why" className="py-20 relative bg-gray-50">
+        <section id="why" className="py-20 relative bg-gray-50 dark:bg-gray-900">
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -607,13 +607,13 @@ export default function Home() {
       </section>
 
         {/* Download Section */}
-        <section id="download" className="py-24 relative bg-white border-t border-gray-100">
+        <section id="download" className="py-24 relative bg-white dark:bg-black border-t border-gray-100 dark:border-gray-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <motion.div {...fadeInUp}>
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 text-gray-900">
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 text-gray-900 dark:text-white">
               Ready to rate your first hole?
             </h2>
-            <p className="text-2xl sm:text-3xl font-light max-w-4xl mx-auto leading-relaxed mb-12 text-gray-600">
+            <p className="text-2xl sm:text-3xl font-light max-w-4xl mx-auto leading-relaxed mb-12 text-gray-600 dark:text-gray-300">
               Join thousands of golfers who are building the ultimate course rating database. Get early access and help shape the future of golf.
             </p>
           </motion.div>
@@ -692,7 +692,7 @@ export default function Home() {
       </section>
 
         {/* Footer */}
-        <footer className="py-16 relative overflow-hidden bg-black border-t border-white/10">
+        <footer className="py-16 relative overflow-hidden bg-gray-900 dark:bg-black border-t border-gray-200 dark:border-white/10">
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
