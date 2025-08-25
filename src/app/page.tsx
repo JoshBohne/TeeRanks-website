@@ -28,6 +28,8 @@ import {
   BetaSpotsMetric, 
   LiveUserCountMetric 
 } from "../components/FloatingMetrics";
+import { LiveActivityFeed } from "../components/LiveActivityFeed";
+import { CommunityStats } from "../components/CommunityStats";
 
 // Import Swiper React components and modules
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -505,6 +507,12 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+        {/* Community Stats Section */}
+        <CommunityStats />
+
+        {/* Live Activity Feed Section */}
+        <LiveActivityFeed />
 
         {/* Urgent CTA Section */}
         <UrgentCTASection />
