@@ -8,7 +8,6 @@ import {
   MapPin, 
   Trophy, 
   Users, 
-  Mail, 
   ArrowRight, 
   CheckCircle,
   Download,
@@ -19,9 +18,16 @@ import {
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
-import { BucketIcon } from "../components/BucketIcon";
 import { IPhoneFrame } from "../components/IPhoneFrame";
 import { ModernNavigation } from "../components/ModernNavigation";
+import { UrgentCTASection } from "../components/UrgentCTASection";
+import { WaitlistButton } from "../components/WaitlistButton";
+import { 
+  HolesRatedMetric, 
+  AverageRatingMetric, 
+  BetaSpotsMetric, 
+  LiveUserCountMetric 
+} from "../components/FloatingMetrics";
 
 // Import Swiper React components and modules
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -186,10 +192,10 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  <span className="text-gray-900 dark:text-white">Rate Every Hole</span>
+                  <span className="text-gray-900 dark:text-white">Your Golf</span>
                   <br />
-                  <span className="text-gradient bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent animate-gradient-x filter drop-shadow-glow">
-                    You Play
+                  <span className="bg-gradient-to-r from-primary-500 via-emerald-500 to-green-500 bg-clip-text text-transparent animate-gradient-x filter drop-shadow-glow">
+                    Memory Bank
                   </span>
                 </motion.h1>
                 
@@ -199,8 +205,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  Join thousands of golfers building the ultimate database of golf hole ratings. 
-                  Swipe, rate, and discover your next must-play course.
+                  Rate every hole. Track every round. Never forget your best golf moments.
                 </motion.p>
                 
                 {/* Download Buttons */}
@@ -212,47 +217,54 @@ export default function Home() {
                 >
                   <motion.a 
                     href="#"
-                    className="group relative px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 shadow-glow-lg overflow-hidden btn-shimmer"
+                    className="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 shadow-xl overflow-hidden"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Star className="w-5 h-5 relative z-10" />
-                    <span className="relative z-10">Start Rating Courses</span>
+                    <span className="relative z-10">Start Your Memory Bank</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
                   </motion.a>
                   
-                  <motion.a 
-                    href="#"
-                    className="group px-8 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-semibold text-lg rounded-2xl flex items-center justify-center space-x-3 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-primary-500/40 transition-all duration-300"
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Users className="w-5 h-5" />
-                    <span>Join the Community</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </motion.a>
+                  <WaitlistButton variant="secondary" />
                 </motion.div>
 
                 {/* Social Proof */}
                 <motion.div 
-                  className="flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-500 dark:text-gray-400"
+                  className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-gray-500 dark:text-gray-400"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
                 >
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-3">
                     <div className="flex -space-x-2">
                       {[1, 2, 3, 4].map((i) => (
-                        <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 border-2 border-white flex items-center justify-center text-xs font-bold text-white">
+                        <motion.div 
+                          key={i} 
+                          className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-600 border-2 border-white dark:border-gray-900 flex items-center justify-center text-xs font-bold text-white shadow-lg"
+                          animate={{ scale: [1, 1.1, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
+                        >
                           G
-                        </div>
+                        </motion.div>
+                      ))}
+                      <motion.div 
+                        className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 border-2 border-white dark:border-gray-900 flex items-center justify-center text-xs font-semibold text-gray-600 dark:text-gray-300 shadow-lg"
+                        animate={{ scale: [1, 1.05, 1] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        +
+                      </motion.div>
+                    </div>
+                    <span className="font-medium">Building golf memories together</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                       ))}
                     </div>
-                    <span>Join 10,000+ golfers tracking every round</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Star className="w-4 h-4 fill-primary-500 text-primary-500" />
-                    <span>50,000+ holes rated</span>
+                    <span className="font-medium">4.8 rating • 1,200+ reviews</span>
                   </div>
                 </motion.div>
               </motion.div>
@@ -264,22 +276,26 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                {/* Floating elements around iPhone */}
-                <motion.div
-                  className="absolute -top-4 -left-4 w-16 h-16 bg-primary-500/20 rounded-2xl backdrop-blur-sm border border-primary-500/30 flex items-center justify-center"
-                  animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Star className="w-8 h-8 text-primary-400 fill-current" />
-                </motion.div>
+                {/* Floating Metrics around iPhone */}
+                <HolesRatedMetric 
+                  className="-top-8 -left-12 sm:-left-16 z-20" 
+                  delay={0.5}
+                />
                 
-                <motion.div
-                  className="absolute -bottom-4 -right-4 w-20 h-12 bg-glass-strong rounded-xl backdrop-blur-sm border border-white/20 flex items-center justify-center"
-                  animate={{ y: [0, 10, 0], rotate: [0, -3, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                >
-                  <span className="text-primary-400 font-bold text-sm">4.8★</span>
-                </motion.div>
+                <AverageRatingMetric 
+                  className="top-16 -right-12 sm:-right-16 z-20" 
+                  delay={0.7}
+                />
+                
+                <BetaSpotsMetric 
+                  className="-bottom-8 -left-8 sm:-left-12 z-20" 
+                  delay={0.9}
+                />
+                
+                <LiveUserCountMetric 
+                  className="bottom-16 -right-8 sm:-right-12 z-20" 
+                  delay={1.1}
+                />
 
                 <IPhoneFrame className="scale-75 sm:scale-90 lg:scale-100 relative z-10" />
               </motion.div>
@@ -299,7 +315,7 @@ export default function Home() {
               Famous holes you need to play
             </h2>
             <p className="text-2xl font-light text-gray-600 dark:text-gray-300">
-              Rate and review the golf world's most iconic holes
+              Rate and review the golf world&apos;s most iconic holes
             </p>
           </motion.div>
           
@@ -443,7 +459,7 @@ export default function Home() {
               Everything you need to become a better golfer
             </h2>
             <p className="text-2xl font-light max-w-4xl mx-auto leading-relaxed text-gray-600 dark:text-gray-300">
-              Join the golf community that's building the ultimate database of course ratings. 
+              Join the golf community that&apos;s building the ultimate database of course ratings. 
               Track your progress, discover new courses, and never forget a great round.
             </p>
           </motion.div>
@@ -490,6 +506,9 @@ export default function Home() {
         </div>
       </section>
 
+        {/* Urgent CTA Section */}
+        <UrgentCTASection />
+
         {/* Why TeeRank Section */}
         <section id="why" className="py-20 relative bg-gray-50 dark:bg-gray-900">
         
@@ -511,8 +530,8 @@ export default function Home() {
                     <CheckCircle className="w-7 h-7 text-black" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-2xl mb-3" style={{ color: 'var(--foreground)' }}>Discover Golf's Greatest</h3>
-                    <p className="text-xl leading-relaxed" style={{ color: 'var(--foreground-soft)' }}>Explore the world's most famous golf holes and courses through community ratings and expert insights.</p>
+                    <h3 className="font-bold text-2xl mb-3" style={{ color: 'var(--foreground)' }}>Discover Golf&apos;s Greatest</h3>
+                    <p className="text-xl leading-relaxed" style={{ color: 'var(--foreground-soft)' }}>Explore the world&apos;s most famous golf holes and courses through community ratings and expert insights.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-6">
@@ -527,7 +546,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-bold text-2xl mb-3" style={{ color: 'var(--foreground)' }}>Track Your Golf Journey</h3>
-                    <p className="text-xl leading-relaxed" style={{ color: 'var(--foreground-soft)' }}>Build your bucket list and keep a digital record of every course you've played and want to play, with detailed statistics and memories.</p>
+                    <p className="text-xl leading-relaxed" style={{ color: 'var(--foreground-soft)' }}>Build your bucket list and keep a digital record of every course you&apos;ve played and want to play, with detailed statistics and memories.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-6">

@@ -4,9 +4,10 @@ import { testData } from '../fixtures/test-data';
 test.describe('Waitlist Form', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    // Navigate to waitlist section
-    await page.locator('a[href="#waitlist"]').click();
-    await page.waitForSelector('#waitlist', { state: 'visible' });
+    // Click the "Join Beta Waitlist" button to open the modal
+    await page.locator('button:has-text("Join Beta Waitlist")').first().click();
+    // Wait for the modal to appear
+    await page.waitForSelector('[role="dialog"], .fixed.inset-0', { state: 'visible' });
   });
 
   test('should display waitlist form correctly', async ({ page }) => {
@@ -15,9 +16,9 @@ test.describe('Waitlist Form', () => {
     await expect(page.locator('input[name="firstName"]')).toBeVisible();
     await expect(page.locator('button[type="submit"]')).toBeVisible();
     
-    // Check form labels
-    await expect(page.locator('text=Email Address')).toBeVisible();
-    await expect(page.locator('text=First Name')).toBeVisible();
+    // Check form placeholders
+    await expect(page.locator('input[placeholder="Enter your email"]')).toBeVisible();
+    await expect(page.locator('input[placeholder="First name"]')).toBeVisible();
   });
 
   test('should submit valid waitlist form successfully', async ({ page }) => {
@@ -29,7 +30,7 @@ test.describe('Waitlist Form', () => {
     await page.click('button[type="submit"]');
     
     // Wait for success message to appear
-    await expect(page.locator('text=Thank you for joining the waitlist!')).toBeVisible();
+    await expect(page.locator('text=Welcome to TeeRank!')).toBeVisible();
     await expect(page.locator('svg')).toBeVisible(); // CheckCircle icon
     
     // Form should be hidden after successful submission
@@ -53,7 +54,7 @@ test.describe('Waitlist Form', () => {
       await expect(page.locator('text=Please enter a valid email address')).toBeVisible();
       
       // Success message should not appear
-      await expect(page.locator('text=Thank you for joining the waitlist!')).not.toBeVisible();
+      await expect(page.locator('text=Welcome to TeeRank!')).not.toBeVisible();
     }
   });
 
@@ -71,10 +72,10 @@ test.describe('Waitlist Form', () => {
       await page.click('button[type="submit"]');
       
       // Should show name validation error
-      await expect(page.locator('text=First name must be at least 2 characters')).toBeVisible();
+      await expect(page.locator('text=First name is required')).toBeVisible();
       
       // Success message should not appear
-      await expect(page.locator('text=Thank you for joining the waitlist!')).not.toBeVisible();
+      await expect(page.locator('text=Welcome to TeeRank!')).not.toBeVisible();
     }
   });
 
@@ -88,7 +89,7 @@ test.describe('Waitlist Form', () => {
     
     // Should show both validation errors
     await expect(page.locator('text=Please enter a valid email address')).toBeVisible();
-    await expect(page.locator('text=First name must be at least 2 characters')).toBeVisible();
+    await expect(page.locator('text=First name is required')).toBeVisible();
   });
 
   test('should clear validation errors when user fixes input', async ({ page }) => {
@@ -99,7 +100,7 @@ test.describe('Waitlist Form', () => {
     
     // Verify errors are shown
     await expect(page.locator('text=Please enter a valid email address')).toBeVisible();
-    await expect(page.locator('text=First name must be at least 2 characters')).toBeVisible();
+    await expect(page.locator('text=First name is required')).toBeVisible();
     
     // Fix the inputs
     await page.fill('input[type="email"]', testData.validWaitlistUser.email);
@@ -109,11 +110,11 @@ test.describe('Waitlist Form', () => {
     await page.click('button[type="submit"]');
     
     // Should now show success
-    await expect(page.locator('text=Thank you for joining the waitlist!')).toBeVisible();
+    await expect(page.locator('text=Welcome to TeeRank!')).toBeVisible();
     
     // Error messages should be gone
     await expect(page.locator('text=Please enter a valid email address')).not.toBeVisible();
-    await expect(page.locator('text=First name must be at least 2 characters')).not.toBeVisible();
+    await expect(page.locator('text=First name is required')).not.toBeVisible();
   });
 
   test('should have proper form accessibility', async ({ page }) => {
